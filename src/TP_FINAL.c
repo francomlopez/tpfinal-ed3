@@ -41,6 +41,7 @@ uint8_t dir;
 int level = 0;
 uint32_t match0_tim0 = 500000;
 int flag = 0;
+uint32_t PR_levels[8] = {25,25,20,20,15,15,10,5};
 
 void llenar_leds();
 void desplazar_fila(int n);
@@ -127,12 +128,10 @@ void EINT0_IRQHandler (void){
 		flag = 0;
 		llenar_leds();
 		level = 0;
-		LPC_TIM0->PR = 25;
 	}
 	else{
 		if(level == 0){
-			leds[1] = 0xe0;
-			LPC_TIM0->PR = 10;
+			leds[1] = 0x70;
 		}
 		else if(level == 7){
 			leds[7] = leds[7] & leds[6];
@@ -160,6 +159,7 @@ void EINT0_IRQHandler (void){
 
 		}
 		level++;
+		LPC_TIM0->PR = PR_levels[level];
 	}
 
 	retardo(4000000); // antirebote
