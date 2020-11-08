@@ -1,0 +1,16 @@
+core_cm3.h:928:22:NVIC_EnableIRQ	16	static
+TP_FINAL.c:58:5:main	8	static
+TP_FINAL.c:79:6:llenar_leds	16	static
+TP_FINAL.c:86:6:desplazar_fila	16	static
+TP_FINAL.c:101:6:confEInt	16	static
+TP_FINAL.c:113:6:confPin	16	static
+TP_FINAL.c:124:6:EINT0_IRQHandler	8	static
+TP_FINAL.c:173:6:retardo	24	static
+TP_FINAL.c:178:6:print_leds	64	static
+TP_FINAL.c:185:6:llenar_win	4	static
+TP_FINAL.c:196:6:llenar_lose	4	static
+TP_FINAL.c:208:6:conf_spi	72	static
+TP_FINAL.c:280:6:spi_send_leds	40	static
+TP_FINAL.c:330:6:update_leds	48	static
+TP_FINAL.c:348:6:conf_timers	32	static
+TP_FINAL.c:370:6:TIMER0_IRQHandler	8	static
