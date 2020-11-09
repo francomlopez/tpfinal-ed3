@@ -267,7 +267,7 @@ void conf_spi(){
     LPC_GPIO0->FIOSET |= (1<<SSEL);
 
     LPC_GPIO0->FIOCLR |= (1<<SSEL);
-    Tx_Buf[0] = 0x0a0f;
+    Tx_Buf[0] = 0x0a07;
     len = SPI_ReadWrite(LPC_SPI, &xferConfig, SPI_TRANSFER_POLLING);// selec brillo max
     LPC_GPIO0->FIOSET |= (1<<SSEL);
 
