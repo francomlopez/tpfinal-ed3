@@ -57,7 +57,6 @@ int cant_bits(uint8_t byte);
 int cual_bit(uint8_t byte);
 void SysTick_Handler();
 void hacer_tono(uint32_t match_value);
-void reconfigure_match(uint32_t match_value);
 
 int main(){
 	SystemInit();
@@ -466,7 +465,7 @@ int cual_bit(uint8_t byte)
 void hacer_tono(uint32_t match)
 {
 
-	reconfigure_match(match);
+	LPC_TIM1->MR1 = match - 1;
 	SYSTICK_Cmd(ENABLE);
 	TIM_Cmd(LPC_TIM1, ENABLE); //Habilita el periferico.
 	TIM_ResetCounter(LPC_TIM1);
@@ -480,18 +479,4 @@ void SysTick_Handler()
 	TIM_Cmd(LPC_TIM1, DISABLE); //deshabilita el periferico.
 	SYSTICK_Cmd(DISABLE);
 
-}
-
-void reconfigure_match(uint32_t match_value)
-{
-	TIM_MATCHCFG_Type MatchTCFG;
-	MatchTCFG.MatchChannel=1;
-	MatchTCFG.MatchValue= match_value;
-	MatchTCFG.ResetOnMatch=ENABLE;
-	MatchTCFG.IntOnMatch=DISABLE;
-	MatchTCFG.ExtMatchOutputType=TIM_EXTMATCH_TOGGLE;
-	MatchTCFG.StopOnMatch=DISABLE;
-	TIM_ConfigMatch(LPC_TIM1, &MatchTCFG);
-
-	return;
 }
