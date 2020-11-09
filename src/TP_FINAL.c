@@ -18,30 +18,26 @@
 #include "lpc17xx_pinsel.h"
 #include "lpc17xx_exti.h"
 #include "lpc17xx_spi.h"
-#include "lpc17xx_timer.h";
+#include "lpc17xx_timer.h"
+#include "lpc17xx_systick.h"
 
-#define BYTE_TO_BINARY_PATTERN "%c%c%c%c%c%c%c%c"
-#define BYTE_TO_BINARY(byte)  \
-  (byte & 0x80 ? '1' : '0'), \
-  (byte & 0x40 ? '1' : '0'), \
-  (byte & 0x20 ? '1' : '0'), \
-  (byte & 0x10 ? '1' : '0'), \
-  (byte & 0x08 ? '1' : '0'), \
-  (byte & 0x04 ? '1' : '0'), \
-  (byte & 0x02 ? '1' : '0'), \
-  (byte & 0x01 ? '1' : '0')
+
 #define SPI_DATABIT_SIZE 8
 #define SSEL 16
 
 #define DERECHA 1
-#define IZQUIERDA 0;
+#define IZQUIERDA 0
+
+#define VEL_MIN 10
 
 uint8_t leds[8];
 uint8_t dir;
 int level = 0;
 uint32_t match0_tim0 = 500000;
 int flag = 0;
-uint32_t PR_levels[8] = {25,25,20,20,15,15,10,5};
+uint32_t PR_levels[8] = {VEL_MIN,VEL_MIN - 1,VEL_MIN - 2,VEL_MIN - 3, \
+						VEL_MIN - 4,VEL_MIN - 5, VEL_MIN- 6, VEL_MIN - 7};
+uint32_t max_per_level[8] = {3,3,3,2,2,2,1,1};
 
 void llenar_leds();
 void desplazar_fila(int n);
@@ -49,12 +45,16 @@ void confEInt(void);
 void confPin(void);
 void conf_spi();
 void retardo (uint32_t tiempo);
-void print_leds();
 void llenar_win();
 void llenar_lose();
 void spi_send_leds(void);
 void update_leds();
-void conf_timers();
+void conf_timer0();
+void conf_timer1();
+int cant_bits(uint8_t byte);
+int cual_bit(uint8_t byte);
+void SysTick_Handler();
+void hacer_tono();
 
 int main(){
 	SystemInit();
@@ -64,15 +64,15 @@ int main(){
 	confPin();
 	confEInt();
 	conf_spi();
-	conf_timers();
+	conf_timer0();
+	conf_timer1();
+	SYSTICK_InternalInit(1);
+	SYSTICK_IntCmd(ENABLE);
+	SYSTICK_Cmd(DISABLE);
+
 	update_leds();
 
-	//print_leds();
-	//spi_send_leds();
-
-	while(1){
-
-	}
+	while(1){}
 
 	return 0;
 }
@@ -120,10 +120,19 @@ void confPin(void){
 		PinCfg.Pinnum = 10;
 		PinCfg.Portnum = 2;
 		PINSEL_ConfigPin(&PinCfg);
+
+		//  Para match1.1
+		PinCfg.Funcnum = 3;
+		PinCfg.OpenDrain = PINSEL_PINMODE_NORMAL;
+		PinCfg.Pinmode = PINSEL_PINMODE_PULLDOWN;
+		PinCfg.Pinnum = 25;
+		PinCfg.Portnum = 1;
+		PINSEL_ConfigPin(&PinCfg);
+		LPC_GPIO1->FIODIR |= (1 << 25);
 }
 
 void EINT0_IRQHandler (void){
-
+	hacer_tono();
 	if(flag){
 		flag = 0;
 		llenar_leds();
@@ -155,14 +164,22 @@ void EINT0_IRQHandler (void){
 			}
 			else{
 				leds[level+1] = leds[level];
+				if (cant_bits(leds[level+1]) > max_per_level[level+1])
+				{
+					int bit = cual_bit(leds[level+1]);
+					leds[level + 1] &= ~bit;
+				}
 			}
 
 		}
 		level++;
+	}
+	if (!flag)
+	{
 		LPC_TIM0->PR = PR_levels[level];
+		retardo(4000000); // antirebote
 	}
 
-	retardo(4000000); // antirebote
 	EXTI_ClearEXTIFlag(EXTI_EINT0); //limpio flag
 	return;
 
@@ -175,14 +192,8 @@ void retardo (uint32_t tiempo){
 	return;
 }
 
-void print_leds(){
-	for(int i = 0; i < 8; i++){
-		printf(BYTE_TO_BINARY_PATTERN"\n", BYTE_TO_BINARY(leds[i]));
-	}
-	printf("\n");
-}
-
 void llenar_win(){
+	LPC_TIM0->PR = 1000;
 	leds[7] = 0xff;
 	leds[6] = 0x81;
 	leds[5] = 0xa5;
@@ -194,6 +205,7 @@ void llenar_win(){
 }
 
 void llenar_lose(){
+	LPC_TIM0->PR = 1000;
 	leds[7] = 0xff;
 	leds[6] = 0x81;
 	leds[5] = 0xa5;
@@ -345,10 +357,10 @@ void update_leds(){
 
 }
 
-void conf_timers(){
+void conf_timer0(){
 	TIM_TIMERCFG_Type TIMERCFG;
 	TIMERCFG.PrescaleOption=TIM_PRESCALE_TICKVAL;
-	TIMERCFG.PrescaleValue=25;
+	TIMERCFG.PrescaleValue=VEL_MIN + 1;
 
 	TIM_MATCHCFG_Type MatchTCFG;
 	MatchTCFG.MatchChannel=0;
@@ -359,7 +371,7 @@ void conf_timers(){
 	MatchTCFG.StopOnMatch=DISABLE;
 
 	TIM_Init(LPC_TIM0, TIM_TIMER_MODE, &TIMERCFG); //Inicializa el periferico.
-	TIM_ConfigMatch(LPC_TIM0, &MatchTCFG); //Configura Match0 en 0.5s.
+	TIM_ConfigMatch(LPC_TIM0, &MatchTCFG);
 
 	TIM_Cmd(LPC_TIM0, ENABLE); //Habilita el periferico.
 
@@ -367,10 +379,80 @@ void conf_timers(){
 	return;
 }
 
-void TIMER0_IRQHandler(){
+void conf_timer1(){
+	TIM_TIMERCFG_Type TIMERCFG;
+	TIMERCFG.PrescaleOption=TIM_PRESCALE_TICKVAL;
+	TIMERCFG.PrescaleValue=1;
+
+	TIM_MATCHCFG_Type MatchTCFG;
+	MatchTCFG.MatchChannel=1;
+	MatchTCFG.MatchValue= 6249;
+	MatchTCFG.ResetOnMatch=ENABLE;
+	MatchTCFG.IntOnMatch=DISABLE;
+	MatchTCFG.ExtMatchOutputType=TIM_EXTMATCH_TOGGLE;
+	MatchTCFG.StopOnMatch=DISABLE;
+	TIM_ConfigMatch(LPC_TIM1, &MatchTCFG);
+
+	TIM_Init(LPC_TIM1, TIM_TIMER_MODE, &TIMERCFG); //Inicializa el periferico.
+	LPC_TIM1->PR = 0;
+
+
+	//TIM_Cmd(LPC_TIM1, ENABLE); //Habilita el periferico.
+
+	//NVIC_EnableIRQ(TIMER1_IRQn); //Habilita interrupciones del periferico.
+	return;
+}
+
+void TIMER0_IRQHandler()
+{
 	if(!flag){
 		desplazar_fila(level);
 	}
 	update_leds();
 	TIM_ClearIntPending(LPC_TIM0,0);
+}
+
+int cant_bits(uint8_t byte)
+{
+	int retval = 0;
+
+	int bit = 0x80;
+	for (int i = 0; i < 8; i++)
+	{
+	  if (bit & byte)
+	  {
+	    retval++;
+	  }
+	  bit = (bit >> 1);
+	}
+	return retval;
+}
+
+int cual_bit(uint8_t byte)
+{
+	int bit = 0x80;
+	for(int i= 7; i >= 0; i--)
+		{
+		  if (bit & byte)
+		  {
+		    return bit;
+		  }
+		  bit = (bit >> 1);
+		}
+return 0;
+}
+
+void hacer_tono(){
+	SYSTICK_Cmd(ENABLE);
+	TIM_Cmd(LPC_TIM1, ENABLE); //Habilita el periferico.
+}
+
+void SysTick_Handler(){
+  int static i = 0;
+  i++;
+  if(i == 1){
+	TIM_Cmd(LPC_TIM1, DISABLE); //deshabilita el periferico.
+	SYSTICK_Cmd(DISABLE);
+	i = 0;
+  }
 }

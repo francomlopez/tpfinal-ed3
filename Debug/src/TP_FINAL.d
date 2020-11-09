@@ -9,7 +9,8 @@ src/TP_FINAL.o src/TP_FINAL.d: ../src/TP_FINAL.c \
  /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Drivers/inc/lpc17xx_pinsel.h \
  /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Drivers/inc/lpc17xx_exti.h \
  /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Drivers/inc/lpc17xx_spi.h \
- /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Drivers/inc/lpc17xx_timer.h
+ /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Drivers/inc/lpc17xx_timer.h \
+ /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Drivers/inc/lpc17xx_systick.h
 
 /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/inc/lpc17xx.h:
 
@@ -32,3 +33,5 @@ src/TP_FINAL.o src/TP_FINAL.d: ../src/TP_FINAL.c \
 /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Drivers/inc/lpc17xx_spi.h:
 
 /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Drivers/inc/lpc17xx_timer.h:
+
+/home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Drivers/inc/lpc17xx_systick.h:
