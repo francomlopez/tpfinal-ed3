@@ -35,9 +35,11 @@ uint8_t dir;
 int level = 0;
 uint32_t match0_tim0 = 500000;
 int flag = 0;
+int sonando = 0;
 uint32_t PR_levels[8] = {VEL_MIN,VEL_MIN - 1,VEL_MIN - 2,VEL_MIN - 3, \
 						VEL_MIN - 4,VEL_MIN - 5, VEL_MIN- 6, VEL_MIN - 7};
 uint32_t max_per_level[8] = {3,3,3,2,2,2,1,1};
+uint32_t match_per_level[8] = { 12500,10000, 8333, 6250, 5500, 5000, 3571, 3125};
 
 void llenar_leds();
 void desplazar_fila(int n);
@@ -54,7 +56,8 @@ void conf_timer1();
 int cant_bits(uint8_t byte);
 int cual_bit(uint8_t byte);
 void SysTick_Handler();
-void hacer_tono();
+void hacer_tono(uint32_t match_value);
+void reconfigure_match(uint32_t match_value);
 
 int main(){
 	SystemInit();
@@ -67,13 +70,11 @@ int main(){
 	conf_timer0();
 	conf_timer1();
 
-	if(SysTick_Config(SystemCoreClock/10)){
+	if(SysTick_Config(SystemCoreClock/15)){
 			while(1);
 		}
 	SYSTICK_Cmd(DISABLE);
-	//SYSTICK_InternalInit(1);
-	//SYSTICK_IntCmd(ENABLE);
-	//SYSTICK_Cmd(DISABLE);
+	NVIC_SetPriority(SysTick_IRQn,2);
 
 	update_leds();
 
@@ -114,6 +115,7 @@ void confEInt(void){
 	EXTI_ClearEXTIFlag(EXTI_EINT0);
 
 	NVIC_EnableIRQ(EINT0_IRQn);
+	NVIC_SetPriority(EINT0_IRQn,3);
 }
 
 void confPin(void){
@@ -137,7 +139,6 @@ void confPin(void){
 }
 
 void EINT0_IRQHandler (void){
-	hacer_tono();
 	if(flag){
 		flag = 0;
 		llenar_leds();
@@ -146,6 +147,7 @@ void EINT0_IRQHandler (void){
 	else{
 		if(level == 0){
 			leds[1] = 0x70;
+			hacer_tono(match_per_level[level]);
 		}
 		else if(level == 7){
 			leds[7] = leds[7] & leds[6];
@@ -169,6 +171,7 @@ void EINT0_IRQHandler (void){
 			}
 			else{
 				leds[level+1] = leds[level];
+				hacer_tono(match_per_level[level]);
 				if (cant_bits(leds[level+1]) > max_per_level[level+1])
 				{
 					int bit = cual_bit(leds[level+1]);
@@ -197,8 +200,8 @@ void retardo (uint32_t tiempo){
 	return;
 }
 
-void llenar_win(){
-	LPC_TIM0->PR = 1000;
+void llenar_win()
+{
 	leds[7] = 0xff;
 	leds[6] = 0x81;
 	leds[5] = 0xa5;
@@ -207,10 +210,18 @@ void llenar_win(){
 	leds[2] = 0x99;
 	leds[1] = 0x81;
 	leds[0] = 0xff;
+	hacer_tono(match_per_level[2]);
+	while(sonando);
+	retardo(1000000);
+	hacer_tono(match_per_level[3]);
+	while(sonando);
+	retardo(1000000);
+	hacer_tono(match_per_level[4]);
+	retardo(1000000);
+
 }
 
 void llenar_lose(){
-	LPC_TIM0->PR = 1000;
 	leds[7] = 0xff;
 	leds[6] = 0x81;
 	leds[5] = 0xa5;
@@ -219,6 +230,14 @@ void llenar_lose(){
 	leds[2] = 0xa5;
 	leds[1] = 0x81;
 	leds[0] = 0xff;
+	hacer_tono(match_per_level[4]);
+	while(sonando);
+	retardo(1000000);
+	hacer_tono(match_per_level[3]);
+	while(sonando);
+	retardo(1000000);
+	hacer_tono(match_per_level[2]);
+	retardo(1000000);
 }
 
 
@@ -272,8 +291,8 @@ void conf_spi(){
     LPC_GPIO0->FIOSET |= (1<<SSEL);
 
     LPC_GPIO0->FIOCLR |= (1<<SSEL);
-    Tx_Buf[0] = 0x0a07;
-    len = SPI_ReadWrite(LPC_SPI, &xferConfig, SPI_TRANSFER_POLLING);// selec brillo max
+    Tx_Buf[0] = 0x0a02;
+    len = SPI_ReadWrite(LPC_SPI, &xferConfig, SPI_TRANSFER_POLLING);// selec brillo
     LPC_GPIO0->FIOSET |= (1<<SSEL);
 
     LPC_GPIO0->FIOCLR |= (1<<SSEL);
@@ -381,6 +400,7 @@ void conf_timer0(){
 	TIM_Cmd(LPC_TIM0, ENABLE); //Habilita el periferico.
 
 	NVIC_EnableIRQ(TIMER0_IRQn); //Habilita interrupciones del periferico.
+	NVIC_SetPriority(TIMER0_IRQn,1);
 	return;
 }
 
@@ -391,7 +411,7 @@ void conf_timer1(){
 
 	TIM_MATCHCFG_Type MatchTCFG;
 	MatchTCFG.MatchChannel=1;
-	MatchTCFG.MatchValue= 6249;
+	MatchTCFG.MatchValue= match_per_level[0];
 	MatchTCFG.ResetOnMatch=ENABLE;
 	MatchTCFG.IntOnMatch=DISABLE;
 	MatchTCFG.ExtMatchOutputType=TIM_EXTMATCH_TOGGLE;
@@ -401,10 +421,6 @@ void conf_timer1(){
 	TIM_Init(LPC_TIM1, TIM_TIMER_MODE, &TIMERCFG); //Inicializa el periferico.
 	LPC_TIM1->PR = 0;
 
-
-	//TIM_Cmd(LPC_TIM1, ENABLE); //Habilita el periferico.
-
-	//NVIC_EnableIRQ(TIMER1_IRQn); //Habilita interrupciones del periferico.
 	return;
 }
 
@@ -444,29 +460,38 @@ int cual_bit(uint8_t byte)
 		  }
 		  bit = (bit >> 1);
 		}
-return 0;
+	return 0;
 }
 
-void hacer_tono(){
-	static int i = 0;
-	if (i == 0)
-	{
-		LPC_TIM1->MR1 = 6249;
-	}
-	else
-	{
-		LPC_TIM1->MR1 = 12499;
-	}
-	i ^= 1;
+void hacer_tono(uint32_t match)
+{
+
+	reconfigure_match(match);
 	SYSTICK_Cmd(ENABLE);
 	TIM_Cmd(LPC_TIM1, ENABLE); //Habilita el periferico.
-}
-
-void SysTick_Handler(){
-
-  SYSTICK_ClearCounterFlag();
-  TIM_Cmd(LPC_TIM1, DISABLE); //deshabilita el periferico.
-  SYSTICK_Cmd(DISABLE);
+	TIM_ResetCounter(LPC_TIM1);
 
 }
 
+void SysTick_Handler()
+{
+	sonando = 0;
+	SYSTICK_ClearCounterFlag();
+	TIM_Cmd(LPC_TIM1, DISABLE); //deshabilita el periferico.
+	SYSTICK_Cmd(DISABLE);
+
+}
+
+void reconfigure_match(uint32_t match_value)
+{
+	TIM_MATCHCFG_Type MatchTCFG;
+	MatchTCFG.MatchChannel=1;
+	MatchTCFG.MatchValue= match_value;
+	MatchTCFG.ResetOnMatch=ENABLE;
+	MatchTCFG.IntOnMatch=DISABLE;
+	MatchTCFG.ExtMatchOutputType=TIM_EXTMATCH_TOGGLE;
+	MatchTCFG.StopOnMatch=DISABLE;
+	TIM_ConfigMatch(LPC_TIM1, &MatchTCFG);
+
+	return;
+}
