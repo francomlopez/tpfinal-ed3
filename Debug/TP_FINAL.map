@@ -9,7 +9,7 @@ Archive member included to satisfy reference by file (symbol)
 /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(lpc17xx_spi.o)
                               ./src/TP_FINAL.o (SPI_Init)
 /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(lpc17xx_systick.o)
-                              ./src/TP_FINAL.o (SYSTICK_InternalInit)
+                              ./src/TP_FINAL.o (SYSTICK_Cmd)
 /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(lpc17xx_timer.o)
                               ./src/TP_FINAL.o (TIM_ClearIntPending)
 /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(lpc17xx_clkpwr.o)
@@ -269,12 +269,14 @@ Discarded input sections
  .text          0x0000000000000000        0x0 /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(lpc17xx_systick.o)
  .data          0x0000000000000000        0x0 /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(lpc17xx_systick.o)
  .bss           0x0000000000000000        0x0 /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(lpc17xx_systick.o)
+ .text.SYSTICK_InternalInit
+                0x0000000000000000       0x48 /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(lpc17xx_systick.o)
  .text.SYSTICK_ExternalInit
                 0x0000000000000000       0x44 /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(lpc17xx_systick.o)
+ .text.SYSTICK_IntCmd
+                0x0000000000000000       0x2c /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(lpc17xx_systick.o)
  .text.SYSTICK_GetCurrentValue
                 0x0000000000000000        0xc /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(lpc17xx_systick.o)
- .text.SYSTICK_ClearCounterFlag
-                0x0000000000000000       0x10 /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(lpc17xx_systick.o)
  .debug_macro   0x0000000000000000      0xaa8 /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(lpc17xx_systick.o)
  .debug_macro   0x0000000000000000       0x1c /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(lpc17xx_systick.o)
  .debug_macro   0x0000000000000000       0x2e /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(lpc17xx_systick.o)
@@ -507,10 +509,14 @@ Discarded input sections
                 0x0000000000000000       0x5c /usr/local/mcuxpresso-ide/ide/plugins/com.nxp.mcuxpresso.tools.linux_11.2.0.202001021529/tools/bin/../lib/gcc/arm-none-eabi/9.2.1/thumb/v7-m/nofp/libcr_eabihelpers.a(float.o)
  .text.__aeabi_f2ulz
                 0x0000000000000000       0x3e /usr/local/mcuxpresso-ide/ide/plugins/com.nxp.mcuxpresso.tools.linux_11.2.0.202001021529/tools/bin/../lib/gcc/arm-none-eabi/9.2.1/thumb/v7-m/nofp/libcr_eabihelpers.a(float.o)
+ .text.__bhs_ui2f
+                0x0000000000000000       0x26 /usr/local/mcuxpresso-ide/ide/plugins/com.nxp.mcuxpresso.tools.linux_11.2.0.202001021529/tools/bin/../lib/gcc/arm-none-eabi/9.2.1/thumb/v7-m/nofp/libcr_eabihelpers.a(float.o)
  .text.__bhs_ul2f
                 0x0000000000000000       0x46 /usr/local/mcuxpresso-ide/ide/plugins/com.nxp.mcuxpresso.tools.linux_11.2.0.202001021529/tools/bin/../lib/gcc/arm-none-eabi/9.2.1/thumb/v7-m/nofp/libcr_eabihelpers.a(float.o)
  .text.__aeabi_i2f
                 0x0000000000000000       0x12 /usr/local/mcuxpresso-ide/ide/plugins/com.nxp.mcuxpresso.tools.linux_11.2.0.202001021529/tools/bin/../lib/gcc/arm-none-eabi/9.2.1/thumb/v7-m/nofp/libcr_eabihelpers.a(float.o)
+ .text.__aeabi_ui2f
+                0x0000000000000000        0x8 /usr/local/mcuxpresso-ide/ide/plugins/com.nxp.mcuxpresso.tools.linux_11.2.0.202001021529/tools/bin/../lib/gcc/arm-none-eabi/9.2.1/thumb/v7-m/nofp/libcr_eabihelpers.a(float.o)
  .text.__aeabi_l2f
                 0x0000000000000000       0x1c /usr/local/mcuxpresso-ide/ide/plugins/com.nxp.mcuxpresso.tools.linux_11.2.0.202001021529/tools/bin/../lib/gcc/arm-none-eabi/9.2.1/thumb/v7-m/nofp/libcr_eabihelpers.a(float.o)
  .text.__aeabi_ul2f
@@ -520,6 +526,8 @@ Discarded input sections
  .text.__aeabi_fcmpeq
                 0x0000000000000000       0x1e /usr/local/mcuxpresso-ide/ide/plugins/com.nxp.mcuxpresso.tools.linux_11.2.0.202001021529/tools/bin/../lib/gcc/arm-none-eabi/9.2.1/thumb/v7-m/nofp/libcr_eabihelpers.a(float.o)
  .text.__aeabi_fcmplt
+                0x0000000000000000       0x3a /usr/local/mcuxpresso-ide/ide/plugins/com.nxp.mcuxpresso.tools.linux_11.2.0.202001021529/tools/bin/../lib/gcc/arm-none-eabi/9.2.1/thumb/v7-m/nofp/libcr_eabihelpers.a(float.o)
+ .text.__aeabi_fcmpgt
                 0x0000000000000000       0x3a /usr/local/mcuxpresso-ide/ide/plugins/com.nxp.mcuxpresso.tools.linux_11.2.0.202001021529/tools/bin/../lib/gcc/arm-none-eabi/9.2.1/thumb/v7-m/nofp/libcr_eabihelpers.a(float.o)
  .text.__aeabi_fcmple
                 0x0000000000000000       0x3e /usr/local/mcuxpresso-ide/ide/plugins/com.nxp.mcuxpresso.tools.linux_11.2.0.202001021529/tools/bin/../lib/gcc/arm-none-eabi/9.2.1/thumb/v7-m/nofp/libcr_eabihelpers.a(float.o)
@@ -531,6 +539,9 @@ Discarded input sections
                 0x0000000000000000       0x20 /usr/local/mcuxpresso-ide/ide/plugins/com.nxp.mcuxpresso.tools.linux_11.2.0.202001021529/tools/bin/../lib/gcc/arm-none-eabi/9.2.1/thumb/v7-m/nofp/libcr_eabihelpers.a(float.o)
  .text.__aeabi_cfrcmple
                 0x0000000000000000        0xa /usr/local/mcuxpresso-ide/ide/plugins/com.nxp.mcuxpresso.tools.linux_11.2.0.202001021529/tools/bin/../lib/gcc/arm-none-eabi/9.2.1/thumb/v7-m/nofp/libcr_eabihelpers.a(float.o)
+ .comment       0x0000000000000000       0x7a /usr/local/mcuxpresso-ide/ide/plugins/com.nxp.mcuxpresso.tools.linux_11.2.0.202001021529/tools/bin/../lib/gcc/arm-none-eabi/9.2.1/thumb/v7-m/nofp/libcr_eabihelpers.a(float.o)
+ .ARM.attributes
+                0x0000000000000000       0x2d /usr/local/mcuxpresso-ide/ide/plugins/com.nxp.mcuxpresso.tools.linux_11.2.0.202001021529/tools/bin/../lib/gcc/arm-none-eabi/9.2.1/thumb/v7-m/nofp/libcr_eabihelpers.a(float.o)
  .text          0x0000000000000000        0x0 /usr/local/mcuxpresso-ide/ide/plugins/com.nxp.mcuxpresso.tools.linux_11.2.0.202001021529/tools/bin/../lib/gcc/arm-none-eabi/9.2.1/thumb/v7-m/nofp/libcr_eabihelpers.a(memcpy.o)
  .data          0x0000000000000000        0x0 /usr/local/mcuxpresso-ide/ide/plugins/com.nxp.mcuxpresso.tools.linux_11.2.0.202001021529/tools/bin/../lib/gcc/arm-none-eabi/9.2.1/thumb/v7-m/nofp/libcr_eabihelpers.a(memcpy.o)
  .bss           0x0000000000000000        0x0 /usr/local/mcuxpresso-ide/ide/plugins/com.nxp.mcuxpresso.tools.linux_11.2.0.202001021529/tools/bin/../lib/gcc/arm-none-eabi/9.2.1/thumb/v7-m/nofp/libcr_eabihelpers.a(memcpy.o)
@@ -614,7 +625,7 @@ END GROUP
                 0x0000000020084000                __top_RamAHB32 = 0x20084000
                 0x0000000020084000                __top_RAM2 = 0x20084000
 
-.text           0x0000000000000000     0x19c4
+.text           0x0000000000000000     0x19b4
  FILL mask 0xff
                 0x0000000000000000                __vectors_start__ = ABSOLUTE (.)
  *(.isr_vector)
@@ -623,10 +634,10 @@ END GROUP
                 0x00000000000000cc                . = ALIGN (0x4)
                 0x00000000000000cc                __section_table_start = .
                 0x00000000000000cc                __data_section_table = .
-                0x00000000000000cc        0x4 LONG 0x19c4 LOADADDR (.data)
+                0x00000000000000cc        0x4 LONG 0x19b4 LOADADDR (.data)
                 0x00000000000000d0        0x4 LONG 0x10000000 ADDR (.data)
                 0x00000000000000d4        0x4 LONG 0x48 SIZEOF (.data)
-                0x00000000000000d8        0x4 LONG 0x19c4 LOADADDR (.data_RAM2)
+                0x00000000000000d8        0x4 LONG 0x19b4 LOADADDR (.data_RAM2)
                 0x00000000000000dc        0x4 LONG 0x2007c000 ADDR (.data_RAM2)
                 0x00000000000000e0        0x4 LONG 0x0 SIZEOF (.data_RAM2)
                 0x00000000000000e4                __data_section_table_end = .
@@ -688,257 +699,249 @@ END GROUP
  *(.text*)
  .text.NVIC_EnableIRQ
                 0x0000000000000224       0x30 ./src/TP_FINAL.o
- .text.main     0x0000000000000254       0x44 ./src/TP_FINAL.o
-                0x0000000000000254                main
+ .text.NVIC_SetPriority
+                0x0000000000000254       0x54 ./src/TP_FINAL.o
+ .text.SysTick_Config
+                0x00000000000002a8       0x44 ./src/TP_FINAL.o
+ .text.main     0x00000000000002ec       0x58 ./src/TP_FINAL.o
+                0x00000000000002ec                main
  .text.llenar_leds
-                0x0000000000000298       0x38 ./src/TP_FINAL.o
-                0x0000000000000298                llenar_leds
+                0x0000000000000344       0x38 ./src/TP_FINAL.o
+                0x0000000000000344                llenar_leds
  .text.desplazar_fila
-                0x00000000000002d0       0x8c ./src/TP_FINAL.o
-                0x00000000000002d0                desplazar_fila
+                0x000000000000037c       0x8c ./src/TP_FINAL.o
+                0x000000000000037c                desplazar_fila
  .text.confEInt
-                0x000000000000035c       0x2e ./src/TP_FINAL.o
-                0x000000000000035c                confEInt
- *fill*         0x000000000000038a        0x2 ff
- .text.confPin  0x000000000000038c       0x58 ./src/TP_FINAL.o
-                0x000000000000038c                confPin
+                0x0000000000000408       0x2e ./src/TP_FINAL.o
+                0x0000000000000408                confEInt
+ *fill*         0x0000000000000436        0x2 ff
+ .text.confPin  0x0000000000000438       0x58 ./src/TP_FINAL.o
+                0x0000000000000438                confPin
  .text.EINT0_IRQHandler
-                0x00000000000003e4      0x174 ./src/TP_FINAL.o
-                0x00000000000003e4                EINT0_IRQHandler
- .text.retardo  0x0000000000000558       0x26 ./src/TP_FINAL.o
-                0x0000000000000558                retardo
- *fill*         0x000000000000057e        0x2 ff
+                0x0000000000000490      0x174 ./src/TP_FINAL.o
+                0x0000000000000490                EINT0_IRQHandler
+ .text.retardo  0x0000000000000604       0x26 ./src/TP_FINAL.o
+                0x0000000000000604                retardo
+ *fill*         0x000000000000062a        0x2 ff
  .text.llenar_win
-                0x0000000000000580       0x4c ./src/TP_FINAL.o
-                0x0000000000000580                llenar_win
+                0x000000000000062c       0x4c ./src/TP_FINAL.o
+                0x000000000000062c                llenar_win
  .text.llenar_lose
-                0x00000000000005cc       0x4c ./src/TP_FINAL.o
-                0x00000000000005cc                llenar_lose
+                0x0000000000000678       0x4c ./src/TP_FINAL.o
+                0x0000000000000678                llenar_lose
  .text.conf_spi
-                0x0000000000000618      0x1a4 ./src/TP_FINAL.o
-                0x0000000000000618                conf_spi
+                0x00000000000006c4      0x1a4 ./src/TP_FINAL.o
+                0x00000000000006c4                conf_spi
  .text.update_leds
-                0x00000000000007bc       0x88 ./src/TP_FINAL.o
-                0x00000000000007bc                update_leds
+                0x0000000000000868       0x88 ./src/TP_FINAL.o
+                0x0000000000000868                update_leds
  .text.conf_timer0
-                0x0000000000000844       0x60 ./src/TP_FINAL.o
-                0x0000000000000844                conf_timer0
+                0x00000000000008f0       0x60 ./src/TP_FINAL.o
+                0x00000000000008f0                conf_timer0
  .text.conf_timer1
-                0x00000000000008a4       0x54 ./src/TP_FINAL.o
-                0x00000000000008a4                conf_timer1
+                0x0000000000000950       0x54 ./src/TP_FINAL.o
+                0x0000000000000950                conf_timer1
  .text.TIMER0_IRQHandler
-                0x00000000000008f8       0x30 ./src/TP_FINAL.o
-                0x00000000000008f8                TIMER0_IRQHandler
+                0x00000000000009a4       0x30 ./src/TP_FINAL.o
+                0x00000000000009a4                TIMER0_IRQHandler
  .text.cant_bits
-                0x0000000000000928       0x46 ./src/TP_FINAL.o
-                0x0000000000000928                cant_bits
+                0x00000000000009d4       0x46 ./src/TP_FINAL.o
+                0x00000000000009d4                cant_bits
  .text.cual_bit
-                0x000000000000096e       0x40 ./src/TP_FINAL.o
-                0x000000000000096e                cual_bit
- *fill*         0x00000000000009ae        0x2 ff
+                0x0000000000000a1a       0x40 ./src/TP_FINAL.o
+                0x0000000000000a1a                cual_bit
+ *fill*         0x0000000000000a5a        0x2 ff
  .text.hacer_tono
-                0x00000000000009b0       0x1c ./src/TP_FINAL.o
-                0x00000000000009b0                hacer_tono
+                0x0000000000000a5c       0x44 ./src/TP_FINAL.o
+                0x0000000000000a5c                hacer_tono
  .text.SysTick_Handler
-                0x00000000000009cc       0x38 ./src/TP_FINAL.o
-                0x00000000000009cc                SysTick_Handler
+                0x0000000000000aa0       0x20 ./src/TP_FINAL.o
+                0x0000000000000aa0                SysTick_Handler
  .text.SystemInit
-                0x0000000000000a04       0xdc /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(system_LPC17xx.o)
-                0x0000000000000a04                SystemInit
+                0x0000000000000ac0       0xdc /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(system_LPC17xx.o)
+                0x0000000000000ac0                SystemInit
  .text.EXTI_SetMode
-                0x0000000000000ae0       0x30 /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(lpc17xx_exti.o)
-                0x0000000000000ae0                EXTI_SetMode
+                0x0000000000000b9c       0x30 /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(lpc17xx_exti.o)
+                0x0000000000000b9c                EXTI_SetMode
  .text.EXTI_SetPolarity
-                0x0000000000000b10       0x30 /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(lpc17xx_exti.o)
-                0x0000000000000b10                EXTI_SetPolarity
+                0x0000000000000bcc       0x30 /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(lpc17xx_exti.o)
+                0x0000000000000bcc                EXTI_SetPolarity
  .text.EXTI_Config
-                0x0000000000000b40       0x24 /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(lpc17xx_exti.o)
-                0x0000000000000b40                EXTI_Config
+                0x0000000000000bfc       0x24 /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(lpc17xx_exti.o)
+                0x0000000000000bfc                EXTI_Config
  .text.EXTI_ClearEXTIFlag
-                0x0000000000000b64       0x18 /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(lpc17xx_exti.o)
-                0x0000000000000b64                EXTI_ClearEXTIFlag
+                0x0000000000000c20       0x18 /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(lpc17xx_exti.o)
+                0x0000000000000c20                EXTI_ClearEXTIFlag
  .text.PINSEL_ConfigPin
-                0x0000000000000b7c       0x7c /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(lpc17xx_pinsel.o)
-                0x0000000000000b7c                PINSEL_ConfigPin
+                0x0000000000000c38       0x7c /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(lpc17xx_pinsel.o)
+                0x0000000000000c38                PINSEL_ConfigPin
  .text.SPI_SetClock.part.0
-                0x0000000000000bf8       0x28 /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(lpc17xx_spi.o)
+                0x0000000000000cb4       0x28 /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(lpc17xx_spi.o)
  .text.SPI_GetDataSize
-                0x0000000000000c20       0x24 /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(lpc17xx_spi.o)
-                0x0000000000000c20                SPI_GetDataSize
+                0x0000000000000cdc       0x24 /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(lpc17xx_spi.o)
+                0x0000000000000cdc                SPI_GetDataSize
  .text.SPI_Init
-                0x0000000000000c44       0x5c /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(lpc17xx_spi.o)
-                0x0000000000000c44                SPI_Init
+                0x0000000000000d00       0x5c /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(lpc17xx_spi.o)
+                0x0000000000000d00                SPI_Init
  .text.SPI_SendData
-                0x0000000000000ca0       0x20 /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(lpc17xx_spi.o)
-                0x0000000000000ca0                SPI_SendData
+                0x0000000000000d5c       0x20 /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(lpc17xx_spi.o)
+                0x0000000000000d5c                SPI_SendData
  .text.SPI_ReceiveData
-                0x0000000000000cc0       0x20 /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(lpc17xx_spi.o)
-                0x0000000000000cc0                SPI_ReceiveData
+                0x0000000000000d7c       0x20 /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(lpc17xx_spi.o)
+                0x0000000000000d7c                SPI_ReceiveData
  .text.SPI_IntCmd
-                0x0000000000000ce0       0x44 /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(lpc17xx_spi.o)
-                0x0000000000000ce0                SPI_IntCmd
+                0x0000000000000d9c       0x44 /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(lpc17xx_spi.o)
+                0x0000000000000d9c                SPI_IntCmd
  .text.SPI_ReadWrite
-                0x0000000000000d24       0xfa /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(lpc17xx_spi.o)
-                0x0000000000000d24                SPI_ReadWrite
- *fill*         0x0000000000000e1e        0x2 ff
- .text.SYSTICK_InternalInit
-                0x0000000000000e20       0x48 /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(lpc17xx_systick.o)
-                0x0000000000000e20                SYSTICK_InternalInit
+                0x0000000000000de0       0xfa /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(lpc17xx_spi.o)
+                0x0000000000000de0                SPI_ReadWrite
+ *fill*         0x0000000000000eda        0x2 ff
  .text.SYSTICK_Cmd
-                0x0000000000000e68       0x2c /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(lpc17xx_systick.o)
-                0x0000000000000e68                SYSTICK_Cmd
- .text.SYSTICK_IntCmd
-                0x0000000000000e94       0x2c /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(lpc17xx_systick.o)
-                0x0000000000000e94                SYSTICK_IntCmd
+                0x0000000000000edc       0x2c /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(lpc17xx_systick.o)
+                0x0000000000000edc                SYSTICK_Cmd
+ .text.SYSTICK_ClearCounterFlag
+                0x0000000000000f08       0x10 /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(lpc17xx_systick.o)
+                0x0000000000000f08                SYSTICK_ClearCounterFlag
  .text.TIM_ClearIntPending
-                0x0000000000000ec0       0x4c /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(lpc17xx_timer.o)
-                0x0000000000000ec0                TIM_ClearIntPending
+                0x0000000000000f18       0x4c /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(lpc17xx_timer.o)
+                0x0000000000000f18                TIM_ClearIntPending
  .text.TIM_Init
-                0x0000000000000f0c      0x15c /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(lpc17xx_timer.o)
-                0x0000000000000f0c                TIM_Init
- .text.TIM_Cmd  0x0000000000001068       0x48 /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(lpc17xx_timer.o)
-                0x0000000000001068                TIM_Cmd
+                0x0000000000000f64      0x15c /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(lpc17xx_timer.o)
+                0x0000000000000f64                TIM_Init
+ .text.TIM_Cmd  0x00000000000010c0       0x48 /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(lpc17xx_timer.o)
+                0x00000000000010c0                TIM_Cmd
  .text.TIM_ConfigMatch
-                0x00000000000010b0       0xcc /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(lpc17xx_timer.o)
-                0x00000000000010b0                TIM_ConfigMatch
+                0x0000000000001108       0xcc /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(lpc17xx_timer.o)
+                0x0000000000001108                TIM_ConfigMatch
  .text.CLKPWR_SetPCLKDiv
-                0x000000000000117c       0x4c /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(lpc17xx_clkpwr.o)
-                0x000000000000117c                CLKPWR_SetPCLKDiv
+                0x00000000000011d4       0x4c /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(lpc17xx_clkpwr.o)
+                0x00000000000011d4                CLKPWR_SetPCLKDiv
  .text.CLKPWR_GetPCLKSEL
-                0x00000000000011c8       0x20 /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(lpc17xx_clkpwr.o)
-                0x00000000000011c8                CLKPWR_GetPCLKSEL
+                0x0000000000001220       0x20 /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(lpc17xx_clkpwr.o)
+                0x0000000000001220                CLKPWR_GetPCLKSEL
  .text.CLKPWR_GetPCLK
-                0x00000000000011e8       0x20 /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(lpc17xx_clkpwr.o)
-                0x00000000000011e8                CLKPWR_GetPCLK
+                0x0000000000001240       0x20 /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(lpc17xx_clkpwr.o)
+                0x0000000000001240                CLKPWR_GetPCLK
  .text.CLKPWR_ConfigPPWR
-                0x0000000000001208       0x34 /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(lpc17xx_clkpwr.o)
-                0x0000000000001208                CLKPWR_ConfigPPWR
+                0x0000000000001260       0x34 /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(lpc17xx_clkpwr.o)
+                0x0000000000001260                CLKPWR_ConfigPPWR
  .text.check_failed
-                0x000000000000123c        0x2 /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(lpc17xx_libcfg_default.o)
-                0x000000000000123c                check_failed
- .text.__main   0x000000000000123e        0xe /usr/local/mcuxpresso-ide/ide/plugins/com.nxp.mcuxpresso.tools.linux_11.2.0.202001021529/tools/bin/../lib/gcc/arm-none-eabi/9.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libcr_semihost.a(_cr__main.o)
-                0x000000000000123e                __main
-                0x000000000000123e                __CR_SEMIHOST
- .text._initio  0x000000000000124c       0x78 /usr/local/mcuxpresso-ide/ide/plugins/com.nxp.mcuxpresso.tools.linux_11.2.0.202001021529/tools/bin/../lib/gcc/arm-none-eabi/9.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libcr_c.a(initio.o)
-                0x000000000000124c                _initio
- .text.setvbuf  0x00000000000012c4       0x3e /usr/local/mcuxpresso-ide/ide/plugins/com.nxp.mcuxpresso.tools.linux_11.2.0.202001021529/tools/bin/../lib/gcc/arm-none-eabi/9.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libcr_c.a(setvbuf.o)
-                0x00000000000012c4                setvbuf
- .text._fdopen  0x0000000000001302       0x68 /usr/local/mcuxpresso-ide/ide/plugins/com.nxp.mcuxpresso.tools.linux_11.2.0.202001021529/tools/bin/../lib/gcc/arm-none-eabi/9.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libcr_c.a(_fdopen.o)
-                0x0000000000001302                _fdopen
- .text.fclose   0x000000000000136a       0x58 /usr/local/mcuxpresso-ide/ide/plugins/com.nxp.mcuxpresso.tools.linux_11.2.0.202001021529/tools/bin/../lib/gcc/arm-none-eabi/9.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libcr_c.a(fclose.o)
-                0x000000000000136a                fclose
- *fill*         0x00000000000013c2        0x2 ff
- .text.fflush   0x00000000000013c4       0x44 /usr/local/mcuxpresso-ide/ide/plugins/com.nxp.mcuxpresso.tools.linux_11.2.0.202001021529/tools/bin/../lib/gcc/arm-none-eabi/9.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libcr_c.a(fflush.o)
-                0x00000000000013c4                fflush
- .text.fseek    0x0000000000001408      0x100 /usr/local/mcuxpresso-ide/ide/plugins/com.nxp.mcuxpresso.tools.linux_11.2.0.202001021529/tools/bin/../lib/gcc/arm-none-eabi/9.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libcr_c.a(fseek.o)
-                0x0000000000001408                fseek
- .text.ftell    0x0000000000001508       0x44 /usr/local/mcuxpresso-ide/ide/plugins/com.nxp.mcuxpresso.tools.linux_11.2.0.202001021529/tools/bin/../lib/gcc/arm-none-eabi/9.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libcr_c.a(ftell.o)
-                0x0000000000001508                ftell
- .text.remove   0x000000000000154c       0x14 /usr/local/mcuxpresso-ide/ide/plugins/com.nxp.mcuxpresso.tools.linux_11.2.0.202001021529/tools/bin/../lib/gcc/arm-none-eabi/9.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libcr_c.a(remove.o)
-                0x000000000000154c                remove
- .text.strlen   0x0000000000001560       0x4c /usr/local/mcuxpresso-ide/ide/plugins/com.nxp.mcuxpresso.tools.linux_11.2.0.202001021529/tools/bin/../lib/gcc/arm-none-eabi/9.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libcr_c.a(strlen.o)
-                0x0000000000001560                strlen
- .text.memset   0x00000000000015ac        0x4 /usr/local/mcuxpresso-ide/ide/plugins/com.nxp.mcuxpresso.tools.linux_11.2.0.202001021529/tools/bin/../lib/gcc/arm-none-eabi/9.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libcr_c.a(memset.o)
-                0x00000000000015ac                memset
+                0x0000000000001294        0x2 /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(lpc17xx_libcfg_default.o)
+                0x0000000000001294                check_failed
+ .text.__main   0x0000000000001296        0xe /usr/local/mcuxpresso-ide/ide/plugins/com.nxp.mcuxpresso.tools.linux_11.2.0.202001021529/tools/bin/../lib/gcc/arm-none-eabi/9.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libcr_semihost.a(_cr__main.o)
+                0x0000000000001296                __main
+                0x0000000000001296                __CR_SEMIHOST
+ .text._initio  0x00000000000012a4       0x78 /usr/local/mcuxpresso-ide/ide/plugins/com.nxp.mcuxpresso.tools.linux_11.2.0.202001021529/tools/bin/../lib/gcc/arm-none-eabi/9.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libcr_c.a(initio.o)
+                0x00000000000012a4                _initio
+ .text.setvbuf  0x000000000000131c       0x3e /usr/local/mcuxpresso-ide/ide/plugins/com.nxp.mcuxpresso.tools.linux_11.2.0.202001021529/tools/bin/../lib/gcc/arm-none-eabi/9.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libcr_c.a(setvbuf.o)
+                0x000000000000131c                setvbuf
+ .text._fdopen  0x000000000000135a       0x68 /usr/local/mcuxpresso-ide/ide/plugins/com.nxp.mcuxpresso.tools.linux_11.2.0.202001021529/tools/bin/../lib/gcc/arm-none-eabi/9.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libcr_c.a(_fdopen.o)
+                0x000000000000135a                _fdopen
+ .text.fclose   0x00000000000013c2       0x58 /usr/local/mcuxpresso-ide/ide/plugins/com.nxp.mcuxpresso.tools.linux_11.2.0.202001021529/tools/bin/../lib/gcc/arm-none-eabi/9.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libcr_c.a(fclose.o)
+                0x00000000000013c2                fclose
+ *fill*         0x000000000000141a        0x2 ff
+ .text.fflush   0x000000000000141c       0x44 /usr/local/mcuxpresso-ide/ide/plugins/com.nxp.mcuxpresso.tools.linux_11.2.0.202001021529/tools/bin/../lib/gcc/arm-none-eabi/9.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libcr_c.a(fflush.o)
+                0x000000000000141c                fflush
+ .text.fseek    0x0000000000001460      0x100 /usr/local/mcuxpresso-ide/ide/plugins/com.nxp.mcuxpresso.tools.linux_11.2.0.202001021529/tools/bin/../lib/gcc/arm-none-eabi/9.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libcr_c.a(fseek.o)
+                0x0000000000001460                fseek
+ .text.ftell    0x0000000000001560       0x44 /usr/local/mcuxpresso-ide/ide/plugins/com.nxp.mcuxpresso.tools.linux_11.2.0.202001021529/tools/bin/../lib/gcc/arm-none-eabi/9.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libcr_c.a(ftell.o)
+                0x0000000000001560                ftell
+ .text.remove   0x00000000000015a4       0x14 /usr/local/mcuxpresso-ide/ide/plugins/com.nxp.mcuxpresso.tools.linux_11.2.0.202001021529/tools/bin/../lib/gcc/arm-none-eabi/9.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libcr_c.a(remove.o)
+                0x00000000000015a4                remove
+ .text.strlen   0x00000000000015b8       0x4c /usr/local/mcuxpresso-ide/ide/plugins/com.nxp.mcuxpresso.tools.linux_11.2.0.202001021529/tools/bin/../lib/gcc/arm-none-eabi/9.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libcr_c.a(strlen.o)
+                0x00000000000015b8                strlen
+ .text.memset   0x0000000000001604        0x4 /usr/local/mcuxpresso-ide/ide/plugins/com.nxp.mcuxpresso.tools.linux_11.2.0.202001021529/tools/bin/../lib/gcc/arm-none-eabi/9.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libcr_c.a(memset.o)
+                0x0000000000001604                memset
  .text._do_fflush
-                0x00000000000015b0       0x40 /usr/local/mcuxpresso-ide/ide/plugins/com.nxp.mcuxpresso.tools.linux_11.2.0.202001021529/tools/bin/../lib/gcc/arm-none-eabi/9.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libcr_c.a(_do_fflush.o)
-                0x00000000000015b0                _do_fflush
- .text._fflush  0x00000000000015f0       0x52 /usr/local/mcuxpresso-ide/ide/plugins/com.nxp.mcuxpresso.tools.linux_11.2.0.202001021529/tools/bin/../lib/gcc/arm-none-eabi/9.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libcr_c.a(_fflush.o)
-                0x00000000000015f0                _fflush
- *fill*         0x0000000000001642        0x2 ff
+                0x0000000000001608       0x40 /usr/local/mcuxpresso-ide/ide/plugins/com.nxp.mcuxpresso.tools.linux_11.2.0.202001021529/tools/bin/../lib/gcc/arm-none-eabi/9.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libcr_c.a(_do_fflush.o)
+                0x0000000000001608                _do_fflush
+ .text._fflush  0x0000000000001648       0x52 /usr/local/mcuxpresso-ide/ide/plugins/com.nxp.mcuxpresso.tools.linux_11.2.0.202001021529/tools/bin/../lib/gcc/arm-none-eabi/9.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libcr_c.a(_fflush.o)
+                0x0000000000001648                _fflush
+ *fill*         0x000000000000169a        0x2 ff
  .text._Cwritebuf
-                0x0000000000001644       0x6c /usr/local/mcuxpresso-ide/ide/plugins/com.nxp.mcuxpresso.tools.linux_11.2.0.202001021529/tools/bin/../lib/gcc/arm-none-eabi/9.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libcr_c.a(_writebuf.o)
-                0x0000000000001644                _Cwritebuf
- .text.free     0x00000000000016b0       0x30 /usr/local/mcuxpresso-ide/ide/plugins/com.nxp.mcuxpresso.tools.linux_11.2.0.202001021529/tools/bin/../lib/gcc/arm-none-eabi/9.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libcr_c.a(alloc.o)
-                0x00000000000016b0                free
+                0x000000000000169c       0x6c /usr/local/mcuxpresso-ide/ide/plugins/com.nxp.mcuxpresso.tools.linux_11.2.0.202001021529/tools/bin/../lib/gcc/arm-none-eabi/9.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libcr_c.a(_writebuf.o)
+                0x000000000000169c                _Cwritebuf
+ .text.free     0x0000000000001708       0x30 /usr/local/mcuxpresso-ide/ide/plugins/com.nxp.mcuxpresso.tools.linux_11.2.0.202001021529/tools/bin/../lib/gcc/arm-none-eabi/9.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libcr_c.a(alloc.o)
+                0x0000000000001708                free
  .text._deferredlazyseek
-                0x00000000000016e0       0x40 /usr/local/mcuxpresso-ide/ide/plugins/com.nxp.mcuxpresso.tools.linux_11.2.0.202001021529/tools/bin/../lib/gcc/arm-none-eabi/9.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libcr_c.a(_deferredlazyseek.o)
-                0x00000000000016e0                _deferredlazyseek
+                0x0000000000001738       0x40 /usr/local/mcuxpresso-ide/ide/plugins/com.nxp.mcuxpresso.tools.linux_11.2.0.202001021529/tools/bin/../lib/gcc/arm-none-eabi/9.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libcr_c.a(_deferredlazyseek.o)
+                0x0000000000001738                _deferredlazyseek
  .text.__aeabi_division_uldivmod
-                0x0000000000001720      0x174 /usr/local/mcuxpresso-ide/ide/plugins/com.nxp.mcuxpresso.tools.linux_11.2.0.202001021529/tools/bin/../lib/gcc/arm-none-eabi/9.2.1/thumb/v7-m/nofp/libcr_eabihelpers.a(division_64.o)
-                0x0000000000001720                __aeabi_uldivmod
-                0x0000000000001724                __bhs_ldivmod1
+                0x0000000000001778      0x174 /usr/local/mcuxpresso-ide/ide/plugins/com.nxp.mcuxpresso.tools.linux_11.2.0.202001021529/tools/bin/../lib/gcc/arm-none-eabi/9.2.1/thumb/v7-m/nofp/libcr_eabihelpers.a(division_64.o)
+                0x0000000000001778                __aeabi_uldivmod
+                0x000000000000177c                __bhs_ldivmod1
  .text.__aeabi_division_idiv0
-                0x0000000000001894        0x2 /usr/local/mcuxpresso-ide/ide/plugins/com.nxp.mcuxpresso.tools.linux_11.2.0.202001021529/tools/bin/../lib/gcc/arm-none-eabi/9.2.1/thumb/v7-m/nofp/libcr_eabihelpers.a(division_idiv0.o)
-                0x0000000000001894                __aeabi_idiv0
- .text.__bhs_ui2f
-                0x0000000000001896       0x26 /usr/local/mcuxpresso-ide/ide/plugins/com.nxp.mcuxpresso.tools.linux_11.2.0.202001021529/tools/bin/../lib/gcc/arm-none-eabi/9.2.1/thumb/v7-m/nofp/libcr_eabihelpers.a(float.o)
-                0x0000000000001896                __bhs_ui2f
- .text.__aeabi_ui2f
-                0x00000000000018bc        0x8 /usr/local/mcuxpresso-ide/ide/plugins/com.nxp.mcuxpresso.tools.linux_11.2.0.202001021529/tools/bin/../lib/gcc/arm-none-eabi/9.2.1/thumb/v7-m/nofp/libcr_eabihelpers.a(float.o)
-                0x00000000000018bc                __aeabi_ui2f
- .text.__aeabi_fcmpgt
-                0x00000000000018c4       0x3a /usr/local/mcuxpresso-ide/ide/plugins/com.nxp.mcuxpresso.tools.linux_11.2.0.202001021529/tools/bin/../lib/gcc/arm-none-eabi/9.2.1/thumb/v7-m/nofp/libcr_eabihelpers.a(float.o)
-                0x00000000000018c4                __aeabi_fcmpgt
+                0x00000000000018ec        0x2 /usr/local/mcuxpresso-ide/ide/plugins/com.nxp.mcuxpresso.tools.linux_11.2.0.202001021529/tools/bin/../lib/gcc/arm-none-eabi/9.2.1/thumb/v7-m/nofp/libcr_eabihelpers.a(division_idiv0.o)
+                0x00000000000018ec                __aeabi_idiv0
  .text.__aeabi_memset_lowlevel
-                0x00000000000018fe       0x32 /usr/local/mcuxpresso-ide/ide/plugins/com.nxp.mcuxpresso.tools.linux_11.2.0.202001021529/tools/bin/../lib/gcc/arm-none-eabi/9.2.1/thumb/v7-m/nofp/libcr_eabihelpers.a(memcpy.o)
-                0x00000000000018fe                __aeabi_lowlevel_memset
+                0x00000000000018ee       0x32 /usr/local/mcuxpresso-ide/ide/plugins/com.nxp.mcuxpresso.tools.linux_11.2.0.202001021529/tools/bin/../lib/gcc/arm-none-eabi/9.2.1/thumb/v7-m/nofp/libcr_eabihelpers.a(memcpy.o)
+                0x00000000000018ee                __aeabi_lowlevel_memset
  .text.__sys_close
-                0x0000000000001930        0xc /usr/local/mcuxpresso-ide/ide/plugins/com.nxp.mcuxpresso.tools.linux_11.2.0.202001021529/tools/bin/../lib/gcc/arm-none-eabi/9.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libcr_semihost.a(__sys_close.o)
-                0x0000000000001930                __sys_close
+                0x0000000000001920        0xc /usr/local/mcuxpresso-ide/ide/plugins/com.nxp.mcuxpresso.tools.linux_11.2.0.202001021529/tools/bin/../lib/gcc/arm-none-eabi/9.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libcr_semihost.a(__sys_close.o)
+                0x0000000000001920                __sys_close
  .text.__sys_flen
-                0x000000000000193c        0xc /usr/local/mcuxpresso-ide/ide/plugins/com.nxp.mcuxpresso.tools.linux_11.2.0.202001021529/tools/bin/../lib/gcc/arm-none-eabi/9.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libcr_semihost.a(__sys_flen.o)
-                0x000000000000193c                __sys_flen
+                0x000000000000192c        0xc /usr/local/mcuxpresso-ide/ide/plugins/com.nxp.mcuxpresso.tools.linux_11.2.0.202001021529/tools/bin/../lib/gcc/arm-none-eabi/9.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libcr_semihost.a(__sys_flen.o)
+                0x000000000000192c                __sys_flen
  .text.__sys_istty
-                0x0000000000001948        0xc /usr/local/mcuxpresso-ide/ide/plugins/com.nxp.mcuxpresso.tools.linux_11.2.0.202001021529/tools/bin/../lib/gcc/arm-none-eabi/9.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libcr_semihost.a(__sys_istty.o)
-                0x0000000000001948                __sys_istty
+                0x0000000000001938        0xc /usr/local/mcuxpresso-ide/ide/plugins/com.nxp.mcuxpresso.tools.linux_11.2.0.202001021529/tools/bin/../lib/gcc/arm-none-eabi/9.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libcr_semihost.a(__sys_istty.o)
+                0x0000000000001938                __sys_istty
  .text.__sys_remove
-                0x0000000000001954        0xc /usr/local/mcuxpresso-ide/ide/plugins/com.nxp.mcuxpresso.tools.linux_11.2.0.202001021529/tools/bin/../lib/gcc/arm-none-eabi/9.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libcr_semihost.a(__sys_remove.o)
-                0x0000000000001954                __sys_remove
+                0x0000000000001944        0xc /usr/local/mcuxpresso-ide/ide/plugins/com.nxp.mcuxpresso.tools.linux_11.2.0.202001021529/tools/bin/../lib/gcc/arm-none-eabi/9.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libcr_semihost.a(__sys_remove.o)
+                0x0000000000001944                __sys_remove
  .text.__sys_seek
-                0x0000000000001960        0xc /usr/local/mcuxpresso-ide/ide/plugins/com.nxp.mcuxpresso.tools.linux_11.2.0.202001021529/tools/bin/../lib/gcc/arm-none-eabi/9.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libcr_semihost.a(__sys_seek.o)
-                0x0000000000001960                __sys_seek
+                0x0000000000001950        0xc /usr/local/mcuxpresso-ide/ide/plugins/com.nxp.mcuxpresso.tools.linux_11.2.0.202001021529/tools/bin/../lib/gcc/arm-none-eabi/9.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libcr_semihost.a(__sys_seek.o)
+                0x0000000000001950                __sys_seek
  .text.__sys_tmpnam
-                0x000000000000196c        0xc /usr/local/mcuxpresso-ide/ide/plugins/com.nxp.mcuxpresso.tools.linux_11.2.0.202001021529/tools/bin/../lib/gcc/arm-none-eabi/9.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libcr_semihost.a(__sys_tmpnam.o)
-                0x000000000000196c                __sys_tmpnam
+                0x000000000000195c        0xc /usr/local/mcuxpresso-ide/ide/plugins/com.nxp.mcuxpresso.tools.linux_11.2.0.202001021529/tools/bin/../lib/gcc/arm-none-eabi/9.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libcr_semihost.a(__sys_tmpnam.o)
+                0x000000000000195c                __sys_tmpnam
  .text.__sys_write
-                0x0000000000001978        0xc /usr/local/mcuxpresso-ide/ide/plugins/com.nxp.mcuxpresso.tools.linux_11.2.0.202001021529/tools/bin/../lib/gcc/arm-none-eabi/9.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libcr_semihost.a(__sys_write.o)
-                0x0000000000001978                __sys_write
+                0x0000000000001968        0xc /usr/local/mcuxpresso-ide/ide/plugins/com.nxp.mcuxpresso.tools.linux_11.2.0.202001021529/tools/bin/../lib/gcc/arm-none-eabi/9.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libcr_semihost.a(__sys_write.o)
+                0x0000000000001968                __sys_write
  *(.rodata .rodata.* .constdata .constdata.*)
  .rodata.SPI_SetClock.str1.1
-                0x0000000000001984        0xf /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(lpc17xx_spi.o)
+                0x0000000000001974        0xf /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(lpc17xx_spi.o)
  .rodata.SYSTICK_Cmd.str1.1
-                0x0000000000001993       0x13 /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(lpc17xx_systick.o)
+                0x0000000000001983       0x13 /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(lpc17xx_systick.o)
  .rodata.TIM_GetIntStatus.str1.1
-                0x00000000000019a6       0x11 /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(lpc17xx_timer.o)
+                0x0000000000001996       0x11 /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(lpc17xx_timer.o)
  .rodata.CSWTCH.5
-                0x00000000000019b7        0x4 /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(lpc17xx_clkpwr.o)
+                0x00000000000019a7        0x4 /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(lpc17xx_clkpwr.o)
  .rodata._initio.str1.1
-                0x00000000000019bb        0x4 /usr/local/mcuxpresso-ide/ide/plugins/com.nxp.mcuxpresso.tools.linux_11.2.0.202001021529/tools/bin/../lib/gcc/arm-none-eabi/9.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libcr_c.a(initio.o)
- *fill*         0x00000000000019bf        0x1 ff
+                0x00000000000019ab        0x4 /usr/local/mcuxpresso-ide/ide/plugins/com.nxp.mcuxpresso.tools.linux_11.2.0.202001021529/tools/bin/../lib/gcc/arm-none-eabi/9.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libcr_c.a(initio.o)
+ *fill*         0x00000000000019af        0x1 ff
  .rodata.__num_Ciob_streams
-                0x00000000000019c0        0x4 /usr/local/mcuxpresso-ide/ide/plugins/com.nxp.mcuxpresso.tools.linux_11.2.0.202001021529/tools/bin/../lib/gcc/arm-none-eabi/9.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libcr_semihost.a(__ciob.o)
-                0x00000000000019c0                __num_Ciob_streams
-                0x00000000000019c4                . = ALIGN (0x4)
+                0x00000000000019b0        0x4 /usr/local/mcuxpresso-ide/ide/plugins/com.nxp.mcuxpresso.tools.linux_11.2.0.202001021529/tools/bin/../lib/gcc/arm-none-eabi/9.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libcr_semihost.a(__ciob.o)
+                0x00000000000019b0                __num_Ciob_streams
+                0x00000000000019b4                . = ALIGN (0x4)
 
-.glue_7         0x00000000000019c4        0x0
- .glue_7        0x00000000000019c4        0x0 linker stubs
+.glue_7         0x00000000000019b4        0x0
+ .glue_7        0x00000000000019b4        0x0 linker stubs
 
-.glue_7t        0x00000000000019c4        0x0
- .glue_7t       0x00000000000019c4        0x0 linker stubs
+.glue_7t        0x00000000000019b4        0x0
+ .glue_7t       0x00000000000019b4        0x0 linker stubs
 
-.vfp11_veneer   0x00000000000019c4        0x0
- .vfp11_veneer  0x00000000000019c4        0x0 linker stubs
+.vfp11_veneer   0x00000000000019b4        0x0
+ .vfp11_veneer  0x00000000000019b4        0x0 linker stubs
 
-.v4_bx          0x00000000000019c4        0x0
- .v4_bx         0x00000000000019c4        0x0 linker stubs
+.v4_bx          0x00000000000019b4        0x0
+ .v4_bx         0x00000000000019b4        0x0 linker stubs
 
-.iplt           0x00000000000019c4        0x0
- .iplt          0x00000000000019c4        0x0 ./src/TP_FINAL.o
+.iplt           0x00000000000019b4        0x0
+ .iplt          0x00000000000019b4        0x0 ./src/TP_FINAL.o
 
-.rel.dyn        0x00000000000019c4        0x0
- .rel.iplt      0x00000000000019c4        0x0 ./src/TP_FINAL.o
+.rel.dyn        0x00000000000019b4        0x0
+ .rel.iplt      0x00000000000019b4        0x0 ./src/TP_FINAL.o
 
 .ARM.extab
  *(.ARM.extab* .gnu.linkonce.armextab.*)
 
-.ARM.exidx      0x00000000000019c4        0x0
-                0x00000000000019c4                __exidx_start = .
+.ARM.exidx      0x00000000000019b4        0x0
+                0x00000000000019b4                __exidx_start = .
  *(.ARM.exidx* .gnu.linkonce.armexidx.*)
-                0x00000000000019c4                __exidx_end = .
-                0x00000000000019c4                _etext = .
+                0x00000000000019b4                __exidx_end = .
+                0x00000000000019b4                _etext = .
 
-.data_RAM2      0x000000002007c000        0x0 load address 0x00000000000019c4
+.data_RAM2      0x000000002007c000        0x0 load address 0x00000000000019b4
  FILL mask 0xff
                 [!provide]                        PROVIDE (__start_data_RAM2 = .)
                 [!provide]                        PROVIDE (__start_data_RamAHB32 = .)
@@ -959,7 +962,7 @@ END GROUP
                 0x0000000010000000                . = ALIGN (0x4)
                 0x0000000010000000                _end_uninit_RESERVED = .
 
-.data           0x0000000010000000       0x48 load address 0x00000000000019c4
+.data           0x0000000010000000       0x48 load address 0x00000000000019b4
  FILL mask 0xff
                 0x0000000010000000                _data = .
                 [!provide]                        PROVIDE (__start_data_RAM = .)
@@ -987,7 +990,7 @@ END GROUP
                 [!provide]                        PROVIDE (__end_data_RAM = .)
                 [!provide]                        PROVIDE (__end_data_RamLoc32 = .)
 
-.igot.plt       0x0000000010000048        0x0 load address 0x0000000000001a0c
+.igot.plt       0x0000000010000048        0x0 load address 0x00000000000019fc
  .igot.plt      0x0000000010000048        0x0 ./src/TP_FINAL.o
 
 .bss_RAM2       0x000000002007c000        0x0
@@ -1015,7 +1018,7 @@ END GROUP
                 0x0000000010000054                level
  .bss.flag      0x0000000010000058        0x4 ./src/TP_FINAL.o
                 0x0000000010000058                flag
- .bss.i.5594    0x000000001000005c        0x4 ./src/TP_FINAL.o
+ .bss.i.5593    0x000000001000005c        0x4 ./src/TP_FINAL.o
  .bss.errno     0x0000000010000060        0x4 /usr/local/mcuxpresso-ide/ide/plugins/com.nxp.mcuxpresso.tools.linux_11.2.0.202001021529/tools/bin/../lib/gcc/arm-none-eabi/9.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libcr_c.a(errno.o)
                 0x0000000010000060                errno
  .bss.__Ciob    0x0000000010000064      0x1e0 /usr/local/mcuxpresso-ide/ide/plugins/com.nxp.mcuxpresso.tools.linux_11.2.0.202001021529/tools/bin/../lib/gcc/arm-none-eabi/9.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libcr_semihost.a(__ciob.o)
@@ -1051,67 +1054,67 @@ END GROUP
                 0x0000000010008000                PROVIDE (_vStackTop = DEFINED (__user_stack_top)?__user_stack_top:(__top_RamLoc32 - 0x0))
                 0xffffffffefff74c6                PROVIDE (__valid_user_code_checksum = (0x0 - ((((((_vStackTop + (ResetISR + 0x1)) + (NMI_Handler + 0x1)) + (HardFault_Handler + 0x1)) + (DEFINED (MemManage_Handler)?MemManage_Handler:0x0 + 0x1)) + (DEFINED (BusFault_Handler)?BusFault_Handler:0x0 + 0x1)) + (DEFINED (UsageFault_Handler)?UsageFault_Handler:0x0 + 0x1))))
                 0x0000000000000000                _image_start = LOADADDR (.text)
-                0x0000000000001a0c                _image_end = (LOADADDR (.data) + SIZEOF (.data))
-                0x0000000000001a0c                _image_size = (_image_end - _image_start)
+                0x00000000000019fc                _image_end = (LOADADDR (.data) + SIZEOF (.data))
+                0x00000000000019fc                _image_size = (_image_end - _image_start)
 OUTPUT(TP_FINAL.axf elf32-littlearm)
 
-.debug_info     0x0000000000000000     0x432c
- .debug_info    0x0000000000000000     0x10d4 ./src/TP_FINAL.o
- .debug_info    0x00000000000010d4      0x272 ./src/cr_startup_lpc175x_6x.o
- .debug_info    0x0000000000001346      0x37d /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(system_LPC17xx.o)
- .debug_info    0x00000000000016c3      0x5a3 /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(lpc17xx_exti.o)
- .debug_info    0x0000000000001c66      0x5a6 /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(lpc17xx_pinsel.o)
- .debug_info    0x000000000000220c      0x979 /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(lpc17xx_spi.o)
- .debug_info    0x0000000000002b85      0x2db /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(lpc17xx_systick.o)
- .debug_info    0x0000000000002e60      0xca0 /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(lpc17xx_timer.o)
- .debug_info    0x0000000000003b00      0x720 /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(lpc17xx_clkpwr.o)
- .debug_info    0x0000000000004220      0x10c /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(lpc17xx_libcfg_default.o)
+.debug_info     0x0000000000000000     0x4563
+ .debug_info    0x0000000000000000     0x130b ./src/TP_FINAL.o
+ .debug_info    0x000000000000130b      0x272 ./src/cr_startup_lpc175x_6x.o
+ .debug_info    0x000000000000157d      0x37d /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(system_LPC17xx.o)
+ .debug_info    0x00000000000018fa      0x5a3 /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(lpc17xx_exti.o)
+ .debug_info    0x0000000000001e9d      0x5a6 /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(lpc17xx_pinsel.o)
+ .debug_info    0x0000000000002443      0x979 /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(lpc17xx_spi.o)
+ .debug_info    0x0000000000002dbc      0x2db /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(lpc17xx_systick.o)
+ .debug_info    0x0000000000003097      0xca0 /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(lpc17xx_timer.o)
+ .debug_info    0x0000000000003d37      0x720 /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(lpc17xx_clkpwr.o)
+ .debug_info    0x0000000000004457      0x10c /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(lpc17xx_libcfg_default.o)
 
-.debug_abbrev   0x0000000000000000     0x13df
- .debug_abbrev  0x0000000000000000      0x379 ./src/TP_FINAL.o
- .debug_abbrev  0x0000000000000379      0x117 ./src/cr_startup_lpc175x_6x.o
- .debug_abbrev  0x0000000000000490      0x11c /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(system_LPC17xx.o)
- .debug_abbrev  0x00000000000005ac      0x1f7 /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(lpc17xx_exti.o)
- .debug_abbrev  0x00000000000007a3      0x1eb /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(lpc17xx_pinsel.o)
- .debug_abbrev  0x000000000000098e      0x2d7 /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(lpc17xx_spi.o)
- .debug_abbrev  0x0000000000000c65      0x1aa /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(lpc17xx_systick.o)
- .debug_abbrev  0x0000000000000e0f      0x307 /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(lpc17xx_timer.o)
- .debug_abbrev  0x0000000000001116      0x219 /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(lpc17xx_clkpwr.o)
- .debug_abbrev  0x000000000000132f       0xb0 /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(lpc17xx_libcfg_default.o)
+.debug_abbrev   0x0000000000000000     0x1415
+ .debug_abbrev  0x0000000000000000      0x3af ./src/TP_FINAL.o
+ .debug_abbrev  0x00000000000003af      0x117 ./src/cr_startup_lpc175x_6x.o
+ .debug_abbrev  0x00000000000004c6      0x11c /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(system_LPC17xx.o)
+ .debug_abbrev  0x00000000000005e2      0x1f7 /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(lpc17xx_exti.o)
+ .debug_abbrev  0x00000000000007d9      0x1eb /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(lpc17xx_pinsel.o)
+ .debug_abbrev  0x00000000000009c4      0x2d7 /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(lpc17xx_spi.o)
+ .debug_abbrev  0x0000000000000c9b      0x1aa /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(lpc17xx_systick.o)
+ .debug_abbrev  0x0000000000000e45      0x307 /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(lpc17xx_timer.o)
+ .debug_abbrev  0x000000000000114c      0x219 /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(lpc17xx_clkpwr.o)
+ .debug_abbrev  0x0000000000001365       0xb0 /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(lpc17xx_libcfg_default.o)
 
-.debug_aranges  0x0000000000000000      0x3a0
+.debug_aranges  0x0000000000000000      0x3b0
  .debug_aranges
-                0x0000000000000000       0xb8 ./src/TP_FINAL.o
+                0x0000000000000000       0xc8 ./src/TP_FINAL.o
  .debug_aranges
-                0x00000000000000b8       0x80 ./src/cr_startup_lpc175x_6x.o
+                0x00000000000000c8       0x80 ./src/cr_startup_lpc175x_6x.o
  .debug_aranges
-                0x0000000000000138       0x28 /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(system_LPC17xx.o)
+                0x0000000000000148       0x28 /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(system_LPC17xx.o)
  .debug_aranges
-                0x0000000000000160       0x48 /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(lpc17xx_exti.o)
+                0x0000000000000170       0x48 /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(lpc17xx_exti.o)
  .debug_aranges
-                0x00000000000001a8       0x30 /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(lpc17xx_pinsel.o)
+                0x00000000000001b8       0x30 /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(lpc17xx_pinsel.o)
  .debug_aranges
-                0x00000000000001d8       0x88 /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(lpc17xx_spi.o)
+                0x00000000000001e8       0x88 /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(lpc17xx_spi.o)
  .debug_aranges
-                0x0000000000000260       0x48 /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(lpc17xx_systick.o)
+                0x0000000000000270       0x48 /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(lpc17xx_systick.o)
  .debug_aranges
-                0x00000000000002a8       0x80 /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(lpc17xx_timer.o)
+                0x00000000000002b8       0x80 /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(lpc17xx_timer.o)
  .debug_aranges
-                0x0000000000000328       0x58 /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(lpc17xx_clkpwr.o)
+                0x0000000000000338       0x58 /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(lpc17xx_clkpwr.o)
  .debug_aranges
-                0x0000000000000380       0x20 /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(lpc17xx_libcfg_default.o)
+                0x0000000000000390       0x20 /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(lpc17xx_libcfg_default.o)
 
-.debug_ranges   0x0000000000000000      0x3b8
- .debug_ranges  0x0000000000000000       0xa8 ./src/TP_FINAL.o
- .debug_ranges  0x00000000000000a8       0x70 ./src/cr_startup_lpc175x_6x.o
- .debug_ranges  0x0000000000000118       0x18 /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(system_LPC17xx.o)
- .debug_ranges  0x0000000000000130       0x38 /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(lpc17xx_exti.o)
- .debug_ranges  0x0000000000000168       0x60 /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(lpc17xx_pinsel.o)
- .debug_ranges  0x00000000000001c8       0x78 /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(lpc17xx_spi.o)
- .debug_ranges  0x0000000000000240       0x38 /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(lpc17xx_systick.o)
- .debug_ranges  0x0000000000000278       0xe8 /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(lpc17xx_timer.o)
- .debug_ranges  0x0000000000000360       0x48 /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(lpc17xx_clkpwr.o)
- .debug_ranges  0x00000000000003a8       0x10 /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(lpc17xx_libcfg_default.o)
+.debug_ranges   0x0000000000000000      0x3c8
+ .debug_ranges  0x0000000000000000       0xb8 ./src/TP_FINAL.o
+ .debug_ranges  0x00000000000000b8       0x70 ./src/cr_startup_lpc175x_6x.o
+ .debug_ranges  0x0000000000000128       0x18 /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(system_LPC17xx.o)
+ .debug_ranges  0x0000000000000140       0x38 /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(lpc17xx_exti.o)
+ .debug_ranges  0x0000000000000178       0x60 /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(lpc17xx_pinsel.o)
+ .debug_ranges  0x00000000000001d8       0x78 /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(lpc17xx_spi.o)
+ .debug_ranges  0x0000000000000250       0x38 /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(lpc17xx_systick.o)
+ .debug_ranges  0x0000000000000288       0xe8 /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(lpc17xx_timer.o)
+ .debug_ranges  0x0000000000000370       0x48 /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(lpc17xx_clkpwr.o)
+ .debug_ranges  0x00000000000003b8       0x10 /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(lpc17xx_libcfg_default.o)
 
 .debug_macro    0x0000000000000000     0x3f13
  .debug_macro   0x0000000000000000       0xeb ./src/TP_FINAL.o
@@ -1154,38 +1157,38 @@ OUTPUT(TP_FINAL.axf elf32-littlearm)
  .debug_macro   0x0000000000003ddf       0x5d /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(lpc17xx_libcfg_default.o)
  .debug_macro   0x0000000000003e3c       0xd7 /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(lpc17xx_libcfg_default.o)
 
-.debug_line     0x0000000000000000     0x2f19
- .debug_line    0x0000000000000000      0x80f ./src/TP_FINAL.o
- .debug_line    0x000000000000080f      0x160 ./src/cr_startup_lpc175x_6x.o
- .debug_line    0x000000000000096f      0x422 /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(system_LPC17xx.o)
- .debug_line    0x0000000000000d91      0x368 /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(lpc17xx_exti.o)
- .debug_line    0x00000000000010f9      0x35a /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(lpc17xx_pinsel.o)
- .debug_line    0x0000000000001453      0x765 /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(lpc17xx_spi.o)
- .debug_line    0x0000000000001bb8      0x3f5 /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(lpc17xx_systick.o)
- .debug_line    0x0000000000001fad      0x920 /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(lpc17xx_timer.o)
- .debug_line    0x00000000000028cd      0x449 /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(lpc17xx_clkpwr.o)
- .debug_line    0x0000000000002d16      0x203 /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(lpc17xx_libcfg_default.o)
+.debug_line     0x0000000000000000     0x2fa9
+ .debug_line    0x0000000000000000      0x89f ./src/TP_FINAL.o
+ .debug_line    0x000000000000089f      0x160 ./src/cr_startup_lpc175x_6x.o
+ .debug_line    0x00000000000009ff      0x422 /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(system_LPC17xx.o)
+ .debug_line    0x0000000000000e21      0x368 /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(lpc17xx_exti.o)
+ .debug_line    0x0000000000001189      0x35a /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(lpc17xx_pinsel.o)
+ .debug_line    0x00000000000014e3      0x765 /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(lpc17xx_spi.o)
+ .debug_line    0x0000000000001c48      0x3f5 /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(lpc17xx_systick.o)
+ .debug_line    0x000000000000203d      0x920 /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(lpc17xx_timer.o)
+ .debug_line    0x000000000000295d      0x449 /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(lpc17xx_clkpwr.o)
+ .debug_line    0x0000000000002da6      0x203 /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(lpc17xx_libcfg_default.o)
 
-.debug_str      0x0000000000000000     0xd0f0
- .debug_str     0x0000000000000000     0xad54 ./src/TP_FINAL.o
-                                       0xae16 (size before relaxing)
- .debug_str     0x000000000000ad54      0x1c6 ./src/cr_startup_lpc175x_6x.o
+.debug_str      0x0000000000000000     0xd11f
+ .debug_str     0x0000000000000000     0xadee ./src/TP_FINAL.o
+                                       0xaeb0 (size before relaxing)
+ .debug_str     0x000000000000adee      0x1c6 ./src/cr_startup_lpc175x_6x.o
                                        0x2fef (size before relaxing)
- .debug_str     0x000000000000af1a      0x53f /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(system_LPC17xx.o)
+ .debug_str     0x000000000000afb4      0x53f /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(system_LPC17xx.o)
                                        0x8a06 (size before relaxing)
- .debug_str     0x000000000000b459      0x1f9 /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(lpc17xx_exti.o)
+ .debug_str     0x000000000000b4f3      0x1f9 /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(lpc17xx_exti.o)
                                        0x8c3d (size before relaxing)
- .debug_str     0x000000000000b652      0x223 /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(lpc17xx_pinsel.o)
+ .debug_str     0x000000000000b6ec      0x223 /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(lpc17xx_pinsel.o)
                                        0x8e99 (size before relaxing)
- .debug_str     0x000000000000b875     0x13b2 /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(lpc17xx_spi.o)
+ .debug_str     0x000000000000b90f     0x13b2 /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(lpc17xx_spi.o)
                                        0xa792 (size before relaxing)
- .debug_str     0x000000000000cc27       0xcc /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(lpc17xx_systick.o)
+ .debug_str     0x000000000000ccc1       0xaf /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(lpc17xx_systick.o)
                                        0x9da1 (size before relaxing)
- .debug_str     0x000000000000ccf3      0x2ee /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(lpc17xx_timer.o)
+ .debug_str     0x000000000000cd70      0x2ee /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(lpc17xx_timer.o)
                                        0xac35 (size before relaxing)
- .debug_str     0x000000000000cfe1       0xe7 /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(lpc17xx_clkpwr.o)
+ .debug_str     0x000000000000d05e       0x99 /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(lpc17xx_clkpwr.o)
                                        0x9c11 (size before relaxing)
- .debug_str     0x000000000000d0c8       0x28 /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(lpc17xx_libcfg_default.o)
+ .debug_str     0x000000000000d0f7       0x28 /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(lpc17xx_libcfg_default.o)
                                        0x4829 (size before relaxing)
 
 .comment        0x0000000000000000       0x79
@@ -1217,7 +1220,6 @@ OUTPUT(TP_FINAL.axf elf32-littlearm)
  .comment       0x0000000000000079       0x7a /usr/local/mcuxpresso-ide/ide/plugins/com.nxp.mcuxpresso.tools.linux_11.2.0.202001021529/tools/bin/../lib/gcc/arm-none-eabi/9.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libcr_c.a(alloc.o)
  .comment       0x0000000000000079       0x7a /usr/local/mcuxpresso-ide/ide/plugins/com.nxp.mcuxpresso.tools.linux_11.2.0.202001021529/tools/bin/../lib/gcc/arm-none-eabi/9.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libcr_c.a(errno.o)
  .comment       0x0000000000000079       0x7a /usr/local/mcuxpresso-ide/ide/plugins/com.nxp.mcuxpresso.tools.linux_11.2.0.202001021529/tools/bin/../lib/gcc/arm-none-eabi/9.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libcr_c.a(_deferredlazyseek.o)
- .comment       0x0000000000000079       0x7a /usr/local/mcuxpresso-ide/ide/plugins/com.nxp.mcuxpresso.tools.linux_11.2.0.202001021529/tools/bin/../lib/gcc/arm-none-eabi/9.2.1/thumb/v7-m/nofp/libcr_eabihelpers.a(float.o)
  .comment       0x0000000000000079       0x7a /usr/local/mcuxpresso-ide/ide/plugins/com.nxp.mcuxpresso.tools.linux_11.2.0.202001021529/tools/bin/../lib/gcc/arm-none-eabi/9.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libcr_semihost.a(__ciob.o)
 
 .ARM.attributes
@@ -1281,37 +1283,35 @@ OUTPUT(TP_FINAL.axf elf32-littlearm)
  .ARM.attributes
                 0x00000000000004e0       0x1b /usr/local/mcuxpresso-ide/ide/plugins/com.nxp.mcuxpresso.tools.linux_11.2.0.202001021529/tools/bin/../lib/gcc/arm-none-eabi/9.2.1/thumb/v7-m/nofp/libcr_eabihelpers.a(division_idiv0.o)
  .ARM.attributes
-                0x00000000000004fb       0x2d /usr/local/mcuxpresso-ide/ide/plugins/com.nxp.mcuxpresso.tools.linux_11.2.0.202001021529/tools/bin/../lib/gcc/arm-none-eabi/9.2.1/thumb/v7-m/nofp/libcr_eabihelpers.a(float.o)
+                0x00000000000004fb       0x1b /usr/local/mcuxpresso-ide/ide/plugins/com.nxp.mcuxpresso.tools.linux_11.2.0.202001021529/tools/bin/../lib/gcc/arm-none-eabi/9.2.1/thumb/v7-m/nofp/libcr_eabihelpers.a(memcpy.o)
  .ARM.attributes
-                0x0000000000000528       0x1b /usr/local/mcuxpresso-ide/ide/plugins/com.nxp.mcuxpresso.tools.linux_11.2.0.202001021529/tools/bin/../lib/gcc/arm-none-eabi/9.2.1/thumb/v7-m/nofp/libcr_eabihelpers.a(memcpy.o)
+                0x0000000000000516       0x33 /usr/local/mcuxpresso-ide/ide/plugins/com.nxp.mcuxpresso.tools.linux_11.2.0.202001021529/tools/bin/../lib/gcc/arm-none-eabi/9.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libcr_semihost.a(__ciob.o)
  .ARM.attributes
-                0x0000000000000543       0x33 /usr/local/mcuxpresso-ide/ide/plugins/com.nxp.mcuxpresso.tools.linux_11.2.0.202001021529/tools/bin/../lib/gcc/arm-none-eabi/9.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libcr_semihost.a(__ciob.o)
+                0x0000000000000549       0x1b /usr/local/mcuxpresso-ide/ide/plugins/com.nxp.mcuxpresso.tools.linux_11.2.0.202001021529/tools/bin/../lib/gcc/arm-none-eabi/9.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libcr_semihost.a(__sys_close.o)
  .ARM.attributes
-                0x0000000000000576       0x1b /usr/local/mcuxpresso-ide/ide/plugins/com.nxp.mcuxpresso.tools.linux_11.2.0.202001021529/tools/bin/../lib/gcc/arm-none-eabi/9.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libcr_semihost.a(__sys_close.o)
+                0x0000000000000564       0x1b /usr/local/mcuxpresso-ide/ide/plugins/com.nxp.mcuxpresso.tools.linux_11.2.0.202001021529/tools/bin/../lib/gcc/arm-none-eabi/9.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libcr_semihost.a(__sys_flen.o)
  .ARM.attributes
-                0x0000000000000591       0x1b /usr/local/mcuxpresso-ide/ide/plugins/com.nxp.mcuxpresso.tools.linux_11.2.0.202001021529/tools/bin/../lib/gcc/arm-none-eabi/9.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libcr_semihost.a(__sys_flen.o)
+                0x000000000000057f       0x1b /usr/local/mcuxpresso-ide/ide/plugins/com.nxp.mcuxpresso.tools.linux_11.2.0.202001021529/tools/bin/../lib/gcc/arm-none-eabi/9.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libcr_semihost.a(__sys_istty.o)
  .ARM.attributes
-                0x00000000000005ac       0x1b /usr/local/mcuxpresso-ide/ide/plugins/com.nxp.mcuxpresso.tools.linux_11.2.0.202001021529/tools/bin/../lib/gcc/arm-none-eabi/9.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libcr_semihost.a(__sys_istty.o)
+                0x000000000000059a       0x1b /usr/local/mcuxpresso-ide/ide/plugins/com.nxp.mcuxpresso.tools.linux_11.2.0.202001021529/tools/bin/../lib/gcc/arm-none-eabi/9.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libcr_semihost.a(__sys_remove.o)
  .ARM.attributes
-                0x00000000000005c7       0x1b /usr/local/mcuxpresso-ide/ide/plugins/com.nxp.mcuxpresso.tools.linux_11.2.0.202001021529/tools/bin/../lib/gcc/arm-none-eabi/9.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libcr_semihost.a(__sys_remove.o)
+                0x00000000000005b5       0x1b /usr/local/mcuxpresso-ide/ide/plugins/com.nxp.mcuxpresso.tools.linux_11.2.0.202001021529/tools/bin/../lib/gcc/arm-none-eabi/9.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libcr_semihost.a(__sys_seek.o)
  .ARM.attributes
-                0x00000000000005e2       0x1b /usr/local/mcuxpresso-ide/ide/plugins/com.nxp.mcuxpresso.tools.linux_11.2.0.202001021529/tools/bin/../lib/gcc/arm-none-eabi/9.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libcr_semihost.a(__sys_seek.o)
+                0x00000000000005d0       0x1b /usr/local/mcuxpresso-ide/ide/plugins/com.nxp.mcuxpresso.tools.linux_11.2.0.202001021529/tools/bin/../lib/gcc/arm-none-eabi/9.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libcr_semihost.a(__sys_tmpnam.o)
  .ARM.attributes
-                0x00000000000005fd       0x1b /usr/local/mcuxpresso-ide/ide/plugins/com.nxp.mcuxpresso.tools.linux_11.2.0.202001021529/tools/bin/../lib/gcc/arm-none-eabi/9.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libcr_semihost.a(__sys_tmpnam.o)
- .ARM.attributes
-                0x0000000000000618       0x1b /usr/local/mcuxpresso-ide/ide/plugins/com.nxp.mcuxpresso.tools.linux_11.2.0.202001021529/tools/bin/../lib/gcc/arm-none-eabi/9.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libcr_semihost.a(__sys_write.o)
+                0x00000000000005eb       0x1b /usr/local/mcuxpresso-ide/ide/plugins/com.nxp.mcuxpresso.tools.linux_11.2.0.202001021529/tools/bin/../lib/gcc/arm-none-eabi/9.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libcr_semihost.a(__sys_write.o)
 
-.debug_frame    0x0000000000000000      0x988
- .debug_frame   0x0000000000000000      0x2d0 ./src/TP_FINAL.o
- .debug_frame   0x00000000000002d0      0x170 ./src/cr_startup_lpc175x_6x.o
- .debug_frame   0x0000000000000440       0x3c /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(system_LPC17xx.o)
- .debug_frame   0x000000000000047c       0x7c /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(lpc17xx_exti.o)
- .debug_frame   0x00000000000004f8       0x50 /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(lpc17xx_pinsel.o)
- .debug_frame   0x0000000000000548      0x174 /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(lpc17xx_spi.o)
- .debug_frame   0x00000000000006bc       0x98 /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(lpc17xx_systick.o)
- .debug_frame   0x0000000000000754      0x174 /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(lpc17xx_timer.o)
- .debug_frame   0x00000000000008c8       0xa0 /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(lpc17xx_clkpwr.o)
- .debug_frame   0x0000000000000968       0x20 /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(lpc17xx_libcfg_default.o)
+.debug_frame    0x0000000000000000      0x9d4
+ .debug_frame   0x0000000000000000      0x31c ./src/TP_FINAL.o
+ .debug_frame   0x000000000000031c      0x170 ./src/cr_startup_lpc175x_6x.o
+ .debug_frame   0x000000000000048c       0x3c /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(system_LPC17xx.o)
+ .debug_frame   0x00000000000004c8       0x7c /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(lpc17xx_exti.o)
+ .debug_frame   0x0000000000000544       0x50 /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(lpc17xx_pinsel.o)
+ .debug_frame   0x0000000000000594      0x174 /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(lpc17xx_spi.o)
+ .debug_frame   0x0000000000000708       0x98 /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(lpc17xx_systick.o)
+ .debug_frame   0x00000000000007a0      0x174 /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(lpc17xx_timer.o)
+ .debug_frame   0x0000000000000914       0xa0 /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(lpc17xx_clkpwr.o)
+ .debug_frame   0x00000000000009b4       0x20 /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(lpc17xx_libcfg_default.o)
 
 .debug_loc      0x0000000000000000     0x147a
  .debug_loc     0x0000000000000000      0x10c /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(lpc17xx_exti.o)
@@ -1401,18 +1401,18 @@ SSP0_IRQHandler                                   ./src/cr_startup_lpc175x_6x.o
 SSP1_IRQHandler                                   ./src/cr_startup_lpc175x_6x.o
 SVC_Handler                                       ./src/cr_startup_lpc175x_6x.o
 SYSTICK_ClearCounterFlag                          /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(lpc17xx_systick.o)
+                                                  ./src/TP_FINAL.o
 SYSTICK_Cmd                                       /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(lpc17xx_systick.o)
                                                   ./src/TP_FINAL.o
 SYSTICK_ExternalInit                              /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(lpc17xx_systick.o)
 SYSTICK_GetCurrentValue                           /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(lpc17xx_systick.o)
 SYSTICK_IntCmd                                    /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(lpc17xx_systick.o)
-                                                  ./src/TP_FINAL.o
 SYSTICK_InternalInit                              /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(lpc17xx_systick.o)
-                                                  ./src/TP_FINAL.o
 SysTick_Handler                                   ./src/TP_FINAL.o
 SystemCoreClock                                   /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(system_LPC17xx.o)
                                                   /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(lpc17xx_clkpwr.o)
                                                   /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(lpc17xx_systick.o)
+                                                  ./src/TP_FINAL.o
 SystemCoreClockUpdate                             /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(system_LPC17xx.o)
 SystemInit                                        /home/franco/Facultad/digital3/WORKSPACE/CMSISv2p00_LPC17xx/Debug/libCMSISv2p00_LPC17xx.a(system_LPC17xx.o)
                                                   ./src/cr_startup_lpc175x_6x.o

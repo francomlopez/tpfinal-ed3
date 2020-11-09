@@ -66,9 +66,14 @@ int main(){
 	conf_spi();
 	conf_timer0();
 	conf_timer1();
-	SYSTICK_InternalInit(1);
-	SYSTICK_IntCmd(ENABLE);
+
+	if(SysTick_Config(SystemCoreClock/10)){
+			while(1);
+		}
 	SYSTICK_Cmd(DISABLE);
+	//SYSTICK_InternalInit(1);
+	//SYSTICK_IntCmd(ENABLE);
+	//SYSTICK_Cmd(DISABLE);
 
 	update_leds();
 
@@ -443,16 +448,25 @@ return 0;
 }
 
 void hacer_tono(){
+	static int i = 0;
+	if (i == 0)
+	{
+		LPC_TIM1->MR1 = 6249;
+	}
+	else
+	{
+		LPC_TIM1->MR1 = 12499;
+	}
+	i ^= 1;
 	SYSTICK_Cmd(ENABLE);
 	TIM_Cmd(LPC_TIM1, ENABLE); //Habilita el periferico.
 }
 
 void SysTick_Handler(){
-  int static i = 0;
-  i++;
-  if(i == 1){
-	TIM_Cmd(LPC_TIM1, DISABLE); //deshabilita el periferico.
-	SYSTICK_Cmd(DISABLE);
-	i = 0;
-  }
+
+  SYSTICK_ClearCounterFlag();
+  TIM_Cmd(LPC_TIM1, DISABLE); //deshabilita el periferico.
+  SYSTICK_Cmd(DISABLE);
+
 }
+
