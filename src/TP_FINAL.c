@@ -12,8 +12,6 @@
 #include "lpc17xx.h"
 #endif
 
-#include <stdio.h>
-
 #include "lpc17xx_gpio.h"
 #include "lpc17xx_pinsel.h"
 #include "lpc17xx_exti.h"
@@ -27,19 +25,19 @@
 #define DERECHA 1
 #define IZQUIERDA 0
 
-#define VEL_MIN 10 // valor de la velocidad minima que usa el PR del timer0, que mueve los leds
+#define VEL_MIN 250000 // valor de la velocidad (en match) minima que usa el PR del timer0, que mueve los leds
 
 uint8_t leds[8]; // arreglo de valores de los leds
 uint8_t dir;	 // direccion a la que se desplaza la fila
 int level = 0;
-uint32_t match0_tim0 = 500000; // valor del match0 para timer0
-int flag = 0;				   // flag usada para logica de boton
-int sonando = 0;			   // flag que indica si esta sonando un tono
-uint32_t PR_levels[8] = {VEL_MIN, VEL_MIN - 1, VEL_MIN - 2, VEL_MIN - 3,
-						 VEL_MIN - 4, VEL_MIN - 5, VEL_MIN - 6, VEL_MIN - 7};	  // arreglo de PRs con los que se
-																				  // cambia la velocidad de desplazamiento
-uint32_t max_per_level[8] = {3, 3, 3, 2, 2, 2, 1, 1};							  // cantidad maxima de puntos por nivel
-uint32_t match_per_level[8] = {12500, 10000, 8333, 6250, 5500, 5000, 3571, 3125}; // distintos match para tonos en distintos niveles
+int flag = 0;	 // flag usada para logica de boton
+int sonando = 0; // flag que indica si esta sonando un tono
+uint32_t match0_levels[8] = {VEL_MIN, VEL_MIN - 50000, VEL_MIN - 83334, VEL_MIN - 107142,
+							 VEL_MIN - 125000, VEL_MIN - 138888, VEL_MIN - 150000, VEL_MIN - 159090}; // arreglo de PRs con los que se
+																									  // cambia la velocidad de desplazamiento
+uint32_t max_per_level[8] = {3, 3, 3, 2, 2, 2, 1, 1};												  // cantidad maxima de puntos por nivel
+uint32_t match1_per_level[8] = {12500, 10000, 8333, 6250, 5500, 5000, 3571, 3125};					  // distintos match para tonos en distintos niveles
+int button_pressed = 0;
 
 void llenar_leds();
 void desplazar_fila(int n);
@@ -72,7 +70,8 @@ int main()
 	if (SysTick_Config(SystemCoreClock / 15))
 	{
 		while (1)
-			;
+		{
+		}
 	}
 	SYSTICK_Cmd(DISABLE);
 	NVIC_SetPriority(SysTick_IRQn, 2);
@@ -81,6 +80,65 @@ int main()
 
 	while (1)
 	{
+		if (button_pressed)
+		{
+			button_pressed = 0;
+			if (flag)
+			{
+				flag = 0;
+				llenar_leds();
+				level = 0;
+			}
+			else
+			{
+				if (level == 0)
+				{
+					leds[1] = 0x70;
+					hacer_tono(match1_per_level[level]);
+				}
+				else if (level == 7)
+				{
+					leds[7] = leds[7] & leds[6];
+					if (leds[7] == 0)
+					{
+						flag = 1;
+						retardo(5000000);
+						llenar_lose();
+					}
+					else
+					{
+						flag = 1;
+						retardo(5000000);
+						llenar_win();
+					}
+				}
+				else
+				{
+					leds[level] &= leds[level - 1];
+					if (leds[level] == 0)
+					{
+						flag = 1;
+						retardo(5000000);
+						llenar_lose();
+					}
+					else
+					{
+						leds[level + 1] = leds[level];
+						hacer_tono(match1_per_level[level]);
+						if (cant_bits(leds[level + 1]) > max_per_level[level + 1])
+						{
+							int bit = cual_bit(leds[level + 1]);
+							leds[level + 1] &= ~bit;
+						}
+					}
+				}
+				level++;
+			}
+			if (!flag)
+			{
+				LPC_TIM0->PR = match0_levels[level];
+			}
+		}
 	}
 
 	return 0;
@@ -154,69 +212,6 @@ void confPin(void)
 	LPC_GPIO1->FIODIR |= (1 << 25);
 }
 
-void EINT0_IRQHandler(void)
-{
-	if (flag)
-	{
-		flag = 0;
-		llenar_leds();
-		level = 0;
-	}
-	else
-	{
-		if (level == 0)
-		{
-			leds[1] = 0x70;
-			hacer_tono(match_per_level[level]);
-		}
-		else if (level == 7)
-		{
-			leds[7] = leds[7] & leds[6];
-			if (leds[7] == 0)
-			{
-				flag = 1;
-				retardo(5000000);
-				llenar_lose();
-			}
-			else
-			{
-				flag = 1;
-				retardo(5000000);
-				llenar_win();
-			}
-		}
-		else
-		{
-			leds[level] &= leds[level - 1];
-			if (leds[level] == 0)
-			{
-				flag = 1;
-				retardo(5000000);
-				llenar_lose();
-			}
-			else
-			{
-				leds[level + 1] = leds[level];
-				hacer_tono(match_per_level[level]);
-				if (cant_bits(leds[level + 1]) > max_per_level[level + 1])
-				{
-					int bit = cual_bit(leds[level + 1]);
-					leds[level + 1] &= ~bit;
-				}
-			}
-		}
-		level++;
-	}
-	if (!flag)
-	{
-		LPC_TIM0->PR = PR_levels[level];
-		retardo(4000000); // antirebote
-	}
-
-	EXTI_ClearEXTIFlag(EXTI_EINT0); //limpio flag
-	return;
-}
-
 void retardo(uint32_t tiempo)
 {
 	for (uint32_t conta = 0; conta < tiempo; conta++)
@@ -236,15 +231,15 @@ void llenar_win()
 	leds[2] = 0x99;
 	leds[1] = 0x81;
 	leds[0] = 0xff;
-	hacer_tono(match_per_level[2]);
+	hacer_tono(match1_per_level[2]);
 	while (sonando)
 		;
 	retardo(1000000);
-	hacer_tono(match_per_level[3]);
+	hacer_tono(match1_per_level[3]);
 	while (sonando)
 		;
 	retardo(1000000);
-	hacer_tono(match_per_level[4]);
+	hacer_tono(match1_per_level[4]);
 	retardo(1000000);
 }
 
@@ -259,15 +254,15 @@ void llenar_lose()
 	leds[2] = 0xa5;
 	leds[1] = 0x81;
 	leds[0] = 0xff;
-	hacer_tono(match_per_level[4]);
+	hacer_tono(match1_per_level[4]);
 	while (sonando)
 		;
 	retardo(1000000);
-	hacer_tono(match_per_level[3]);
+	hacer_tono(match1_per_level[3]);
 	while (sonando)
 		;
 	retardo(1000000);
-	hacer_tono(match_per_level[2]);
+	hacer_tono(match1_per_level[2]);
 	retardo(1000000);
 }
 
@@ -375,11 +370,11 @@ void conf_timer0()
 {
 	TIM_TIMERCFG_Type TIMERCFG;
 	TIMERCFG.PrescaleOption = TIM_PRESCALE_TICKVAL;
-	TIMERCFG.PrescaleValue = VEL_MIN + 1;
+	TIMERCFG.PrescaleValue = 25;
 
 	TIM_MATCHCFG_Type MatchTCFG;
 	MatchTCFG.MatchChannel = 0;
-	MatchTCFG.MatchValue = match0_tim0;
+	MatchTCFG.MatchValue = VEL_MIN; // si vel_min es 250000 - freq de int = 4hz
 	MatchTCFG.ResetOnMatch = ENABLE;
 	MatchTCFG.IntOnMatch = ENABLE;
 	MatchTCFG.ExtMatchOutputType = TIM_EXTMATCH_NOTHING;
@@ -407,7 +402,7 @@ void conf_timer1()
 
 	TIM_MATCHCFG_Type MatchTCFG;
 	MatchTCFG.MatchChannel = 1;
-	MatchTCFG.MatchValue = match_per_level[0];
+	MatchTCFG.MatchValue = match1_per_level[0];
 	MatchTCFG.ResetOnMatch = ENABLE;
 	MatchTCFG.IntOnMatch = DISABLE;
 	MatchTCFG.ExtMatchOutputType = TIM_EXTMATCH_TOGGLE;
@@ -418,16 +413,6 @@ void conf_timer1()
 	LPC_TIM1->PR = 0;
 
 	return;
-}
-
-void TIMER0_IRQHandler()
-{
-	if (!flag)
-	{
-		desplazar_fila(level);
-	}
-	update_leds();
-	TIM_ClearIntPending(LPC_TIM0, 0);
 }
 
 // Esta funcion retorna cuantos bits en 1 tiene un determinado byte
@@ -472,6 +457,11 @@ void hacer_tono(uint32_t match)
 	TIM_ResetCounter(LPC_TIM1);
 }
 
+/*-----------------------------------------------------------
+						HANDLERS
+-------------------------------------------------------------
+*/
+
 // Con systick se frena el buzzer
 void SysTick_Handler()
 {
@@ -479,4 +469,22 @@ void SysTick_Handler()
 	SYSTICK_ClearCounterFlag();
 	TIM_Cmd(LPC_TIM1, DISABLE); //deshabilita el periferico.
 	SYSTICK_Cmd(DISABLE);
+}
+
+void TIMER0_IRQHandler()
+{
+	if (!flag)
+	{
+		desplazar_fila(level);
+	}
+	update_leds();
+	TIM_ClearIntPending(LPC_TIM0, 0);
+}
+
+void EINT0_IRQHandler(void)
+{
+	button_pressed = 1;
+	retardo(4000000);				// antirebote
+	EXTI_ClearEXTIFlag(EXTI_EINT0); //limpio flag
+	return;
 }
