@@ -32,12 +32,12 @@ uint8_t dir;	 // direccion a la que se desplaza la fila
 int level = 0;
 int flag = 0;	 // flag usada para logica de boton
 int sonando = 0; // flag que indica si esta sonando un tono
+int button_pressed = 0;
 uint32_t match0_levels[8] = {VEL_MIN, VEL_MIN - 50000, VEL_MIN - 83334, VEL_MIN - 107142,
 							 VEL_MIN - 125000, VEL_MIN - 138888, VEL_MIN - 150000, VEL_MIN - 159090}; // arreglo de PRs con los que se
 																									  // cambia la velocidad de desplazamiento
 uint32_t max_per_level[8] = {3, 3, 3, 2, 2, 2, 1, 1};												  // cantidad maxima de puntos por nivel
 uint32_t match1_per_level[8] = {12500, 10000, 8333, 6250, 5500, 5000, 3571, 3125};					  // distintos match para tonos en distintos niveles
-int button_pressed = 0;
 
 void llenar_leds();
 void desplazar_fila(int n);
@@ -66,79 +66,23 @@ int main()
 	conf_spi();
 	conf_timer0();
 	conf_timer1();
-
+	/*
 	if (SysTick_Config(SystemCoreClock / 15))
 	{
 		while (1)
 		{
 		}
 	}
+	*/
+	SYSTICK_InternalInit(100);
 	SYSTICK_Cmd(DISABLE);
 	NVIC_SetPriority(SysTick_IRQn, 2);
+	SYSTICK_IntCmd(ENABLE);
 
 	update_leds();
 
 	while (1)
 	{
-		if (button_pressed)
-		{
-			button_pressed = 0;
-			if (flag)
-			{
-				flag = 0;
-				llenar_leds();
-				level = 0;
-			}
-			else
-			{
-				if (level == 0)
-				{
-					leds[1] = 0x70;
-					hacer_tono(match1_per_level[level]);
-				}
-				else if (level == 7)
-				{
-					leds[7] = leds[7] & leds[6];
-					if (leds[7] == 0)
-					{
-						flag = 1;
-						retardo(5000000);
-						llenar_lose();
-					}
-					else
-					{
-						flag = 1;
-						retardo(5000000);
-						llenar_win();
-					}
-				}
-				else
-				{
-					leds[level] &= leds[level - 1];
-					if (leds[level] == 0)
-					{
-						flag = 1;
-						retardo(5000000);
-						llenar_lose();
-					}
-					else
-					{
-						leds[level + 1] = leds[level];
-						hacer_tono(match1_per_level[level]);
-						if (cant_bits(leds[level + 1]) > max_per_level[level + 1])
-						{
-							int bit = cual_bit(leds[level + 1]);
-							leds[level + 1] &= ~bit;
-						}
-					}
-				}
-				level++;
-			}
-			if (!flag)
-			{
-				LPC_TIM0->PR = match0_levels[level];
-			}
-		}
 	}
 
 	return 0;
@@ -232,12 +176,10 @@ void llenar_win()
 	leds[1] = 0x81;
 	leds[0] = 0xff;
 	hacer_tono(match1_per_level[2]);
-	while (sonando)
-		;
+	while (sonando);
 	retardo(1000000);
 	hacer_tono(match1_per_level[3]);
-	while (sonando)
-		;
+	while (sonando);
 	retardo(1000000);
 	hacer_tono(match1_per_level[4]);
 	retardo(1000000);
@@ -255,12 +197,10 @@ void llenar_lose()
 	leds[1] = 0x81;
 	leds[0] = 0xff;
 	hacer_tono(match1_per_level[4]);
-	while (sonando)
-		;
+	while (sonando);
 	retardo(1000000);
 	hacer_tono(match1_per_level[3]);
-	while (sonando)
-		;
+	while (sonando);
 	retardo(1000000);
 	hacer_tono(match1_per_level[2]);
 	retardo(1000000);
@@ -275,7 +215,6 @@ void llenar_lose()
 void conf_spi()
 {
 	SPI_DATA_SETUP_Type xferConfig;
-	uint32_t len = 0;
 	uint16_t Tx_Buf[2];
 	uint16_t Rx_Buf[2];
 	PINSEL_CFG_Type PinCfg;
@@ -319,27 +258,27 @@ void conf_spi()
 
 	LPC_GPIO0->FIOCLR |= (1 << SSEL);
 	Tx_Buf[0] = 0x0900;
-	len = SPI_ReadWrite(LPC_SPI, &xferConfig, SPI_TRANSFER_POLLING); // modo sin decodificacion 7 seg
+	SPI_ReadWrite(LPC_SPI, &xferConfig, SPI_TRANSFER_POLLING); // modo sin decodificacion 7 seg
 	LPC_GPIO0->FIOSET |= (1 << SSEL);
 
 	LPC_GPIO0->FIOCLR |= (1 << SSEL);
 	Tx_Buf[0] = 0x0a02;
-	len = SPI_ReadWrite(LPC_SPI, &xferConfig, SPI_TRANSFER_POLLING); // selec brillo
+	SPI_ReadWrite(LPC_SPI, &xferConfig, SPI_TRANSFER_POLLING); // selec brillo
 	LPC_GPIO0->FIOSET |= (1 << SSEL);
 
 	LPC_GPIO0->FIOCLR |= (1 << SSEL);
 	Tx_Buf[0] = 0x0b07;
-	len = SPI_ReadWrite(LPC_SPI, &xferConfig, SPI_TRANSFER_POLLING); // scan limit
+	SPI_ReadWrite(LPC_SPI, &xferConfig, SPI_TRANSFER_POLLING); // scan limit
 	LPC_GPIO0->FIOSET |= (1 << SSEL);
 
 	LPC_GPIO0->FIOCLR |= (1 << SSEL);
 	Tx_Buf[0] = 0x0c01; // modo normal (no shutdown)
-	len = SPI_ReadWrite(LPC_SPI, &xferConfig, SPI_TRANSFER_POLLING);
+	SPI_ReadWrite(LPC_SPI, &xferConfig, SPI_TRANSFER_POLLING);
 	LPC_GPIO0->FIOSET |= (1 << SSEL);
 
 	LPC_GPIO0->FIOCLR |= (1 << SSEL);
 	Tx_Buf[0] = 0x0f00;
-	len = SPI_ReadWrite(LPC_SPI, &xferConfig, SPI_TRANSFER_POLLING);
+	SPI_ReadWrite(LPC_SPI, &xferConfig, SPI_TRANSFER_POLLING);
 	LPC_GPIO0->FIOSET |= (1 << SSEL);
 
 	return;
@@ -349,7 +288,6 @@ void conf_spi()
 void update_leds()
 {
 	SPI_DATA_SETUP_Type xferConfig;
-	uint32_t len = 0;
 	uint16_t Tx_Buf[2];
 	uint16_t Rx_Buf[2];
 	xferConfig.tx_data = Tx_Buf;
@@ -360,7 +298,7 @@ void update_leds()
 	{
 		LPC_GPIO0->FIOCLR |= (1 << SSEL);
 		Tx_Buf[0] = (uint16_t)((i + 1) << 8) + leds[i];
-		len = SPI_ReadWrite(LPC_SPI, &xferConfig, SPI_TRANSFER_POLLING);
+		SPI_ReadWrite(LPC_SPI, &xferConfig, SPI_TRANSFER_POLLING);
 		LPC_GPIO0->FIOSET |= (1 << SSEL);
 	}
 }
@@ -469,6 +407,7 @@ void SysTick_Handler()
 	SYSTICK_ClearCounterFlag();
 	TIM_Cmd(LPC_TIM1, DISABLE); //deshabilita el periferico.
 	SYSTICK_Cmd(DISABLE);
+	return;
 }
 
 void TIMER0_IRQHandler()
@@ -479,12 +418,69 @@ void TIMER0_IRQHandler()
 	}
 	update_leds();
 	TIM_ClearIntPending(LPC_TIM0, 0);
+	return;
 }
 
 void EINT0_IRQHandler(void)
 {
-	button_pressed = 1;
-	retardo(4000000);				// antirebote
+	if (flag)
+	{
+		flag = 0;
+		llenar_leds();
+		level = 0;
+	}
+	else
+	{
+		if (level == 0)
+		{
+			leds[1] = 0x70;
+			hacer_tono(match1_per_level[level]);
+		}
+		else if (level == 7)
+		{
+			leds[7] = leds[7] & leds[6];
+			if (leds[7] == 0)
+			{
+				flag = 1;
+				retardo(5000000);
+				llenar_lose();
+			}
+			else
+			{
+				flag = 1;
+				retardo(5000000);
+				llenar_win();
+			}
+		}
+		else
+		{
+			leds[level] &= leds[level - 1];
+			if (leds[level] == 0)
+			{
+				flag = 1;
+				retardo(5000000);
+				llenar_lose();
+			}
+			else
+			{
+				leds[level + 1] = leds[level];
+				hacer_tono(match1_per_level[level]);
+				if (cant_bits(leds[level + 1]) > max_per_level[level + 1])
+				{
+					int bit = cual_bit(leds[level + 1]);
+					leds[level + 1] &= ~bit;
+				}
+			}
+		}
+		level++;
+	}
+	if (!flag)
+	{
+		LPC_TIM0->MR0 = match0_levels[level];
+		retardo(4000000); // antirebote
+		TIM_ResetCounter(LPC_TIM0);
+	}
+
 	EXTI_ClearEXTIFlag(EXTI_EINT0); //limpio flag
 	return;
 }
